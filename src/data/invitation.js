@@ -45,13 +45,11 @@ export const invitation = {
 더없는 기쁨이 되겠습니다.`,
   },
 
-  // 갤러리 이미지 — public/gallery 에 파일을 넣고 경로만 적어주세요.
-  gallery: [
-    '/wedding-invitation/gallery/sample-1.svg',
-    '/wedding-invitation/gallery/sample-2.svg',
-    '/wedding-invitation/gallery/sample-3.svg',
-    '/wedding-invitation/gallery/sample-4.svg',
-  ],
+  // 갤러리 이미지
+  // - 기본: src/assets/gallery/ 폴더에 사진을 떨어뜨리면 자동으로 가져옵니다.
+  //   (파일명 순으로 정렬되므로 01.jpg, 02.jpg 처럼 번호를 붙이면 순서 제어 가능)
+  // - 수동으로 경로 지정하고 싶다면 아래 배열에 경로를 채워주세요.
+  gallery: [],
 
   // 메인 사진 — public/gallery/hero.jpg 로 파일 떨어뜨리면 자동 표시
   // (없으면 hero.svg 플레이스홀더가 표시됩니다)
