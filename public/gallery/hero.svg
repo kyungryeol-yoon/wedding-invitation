@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7cb1d6"/>
+      <stop offset="0.55" stop-color="#a8c8de"/>
+      <stop offset="1" stop-color="#cfe0eb"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0e3cd"/>
+      <stop offset="1" stop-color="#e6d5b4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="620" fill="url(#sky)"/>
+  <rect y="620" width="800" height="380" fill="url(#warm)"/>
+
+  <!-- 손 + 반지 실루엣 (상단) -->
+  <g opacity="0.18" fill="#3a2f24">
+    <path d="M310 200 q-20 -60 30 -90 q20 -10 30 10 l10 40 q10 -50 50 -50 q30 0 30 30 l5 60 q5 -40 40 -40 q30 0 30 30 l0 80 q0 50 -60 70 l-100 20 q-50 10 -60 -20 z"/>
+    <path d="M410 220 q-30 -60 10 -90 q40 -20 70 10 l20 40 q20 -40 50 -30 q30 10 20 50 l-10 60 q30 -20 50 0 q20 30 -10 60 l-60 70 q-30 30 -70 10 z"/>
+    <!-- ring -->
+    <rect x="500" y="170" width="36" height="10" rx="3" fill="#9b8a6a" opacity="0.9"/>
+    <rect x="370" y="240" width="36" height="10" rx="3" fill="#9b8a6a" opacity="0.9"/>
+  </g>
+
+  <!-- 인물 실루엣 (하단) -->
+  <g opacity="0.22" fill="#3a2f24">
+    <ellipse cx="320" cy="780" rx="120" ry="160"/>
+    <ellipse cx="500" cy="760" rx="110" ry="150"/>
+  </g>
+  <!-- 꽃다발 -->
+  <g opacity="0.85">
+    <circle cx="430" cy="850" r="18" fill="#fbf5ea"/>
+    <circle cx="455" cy="845" r="22" fill="#fbf5ea"/>
+    <circle cx="445" cy="870" r="20" fill="#fbf5ea"/>
+    <circle cx="420" cy="875" r="16" fill="#fbf5ea"/>
+    <path d="M430 880 q5 30 -5 70" stroke="#9eaf6a" stroke-width="6" fill="none" opacity="0.5"/>
+    <path d="M455 880 q-5 25 5 60" stroke="#9eaf6a" stroke-width="6" fill="none" opacity="0.5"/>
+  </g>
+
+  <!-- 타이틀 -->
+  <text x="400" y="430" text-anchor="middle"
+        font-family="'Cormorant Garamond', 'Times New Roman', serif"
+        font-size="62" font-weight="400" fill="#ffffff" letter-spacing="2">
+    You &amp; Me, Always
+  </text>
+
+  <!-- placeholder 안내 -->
+  <text x="400" y="970" text-anchor="middle"
+        font-family="'Inter', sans-serif" font-size="14" fill="#5c534a" letter-spacing="2" opacity="0.7">
+    PLACEHOLDER · REPLACE public/gallery/hero.jpg
+  </text>
+</svg>

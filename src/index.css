@@ -1,17 +1,17 @@
 :root {
-  /* 크라프트 한지 팔레트 (종이 청첩장과 동일 톤) */
-  --kraft: #e8dcc4;
-  --kraft-deep: #d9c9a8;
-  --kraft-light: #f1e7d2;
-  --ink: #161412;
-  --ink-soft: #3b332c;
-  --ink-mute: #6b5f51;
-  --line: #2a241f;
-  --line-soft: #b7a785;
-  --accent-red: #b8332a;
-  --paper-edge: #efe6cf;
-  /* 외부(앱 박스 바깥) 배경 */
-  --outside: #cbb88f;
+  /* 부드러운 아이보리 + 차분한 잉크 + 가벼운 라인 */
+  --paper: #faf6ed;
+  --paper-deep: #f1e8d2;
+  --paper-soft: #fffdf6;
+  --ink: #2c2620;
+  --ink-soft: #5c534a;
+  --ink-mute: #8a7e6d;
+  --line: #2c2620;
+  --line-soft: #d6c9a8;
+  --line-hair: #e5dcc4;
+  --accent: #b8332a;      /* 단청 주칠 — 포인트로만 */
+  --sky: #a8c8de;          /* 사진 하늘색과 호응 */
+  --outside: #e2d5b8;     /* 티켓 바깥 배경 */
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -21,11 +21,10 @@ html, body {
   padding: 0;
   background: var(--outside);
   color: var(--ink);
-  font-family: 'Gowun Batang', 'Nanum Myeongjo', 'Apple SD Gothic Neo',
-    'Noto Serif KR', serif;
+  font-family: 'Gowun Batang', 'Nanum Myeongjo', 'Apple SD Gothic Neo', serif;
   -webkit-font-smoothing: antialiased;
   font-size: 16px;
-  line-height: 1.7;
+  line-height: 1.75;
   word-break: keep-all;
 }
 
@@ -36,43 +35,42 @@ img { max-width: 100%; display: block; }
 
 /* ====================================================
    APP — 한 장의 긴 티켓
-   양 옆에 살짝 스캘롭(반원 노치)이 들어가고,
-   섹션 사이에는 점선 + 양 끝 동그란 천공 구멍이 있다.
    ==================================================== */
 
 .app {
   width: 100%;
   max-width: 460px;
   background:
-    /* 한지 결 느낌 (subtle noise) */
     repeating-linear-gradient(115deg,
-      rgba(120, 95, 60, 0.03) 0 2px, transparent 2px 6px),
+      rgba(120, 95, 60, 0.02) 0 2px, transparent 2px 6px),
     repeating-linear-gradient(25deg,
-      rgba(120, 95, 60, 0.025) 0 1px, transparent 1px 5px),
-    var(--kraft);
+      rgba(120, 95, 60, 0.015) 0 1px, transparent 1px 5px),
+    var(--paper);
   position: relative;
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
   overflow: hidden;
-  /* 양 옆 스캘롭 노치 */
-  --notch: 10px;
+  --notch: 8px;
   -webkit-mask:
-    radial-gradient(circle var(--notch) at 0 50%, transparent 98%, #000 100%) 0 0/100% 28px repeat-y,
-    radial-gradient(circle var(--notch) at 100% 50%, transparent 98%, #000 100%) 0 0/100% 28px repeat-y;
+    radial-gradient(circle var(--notch) at 0 50%, transparent 98%, #000 100%) 0 0/100% 24px repeat-y,
+    radial-gradient(circle var(--notch) at 100% 50%, transparent 98%, #000 100%) 0 0/100% 24px repeat-y;
   -webkit-mask-composite: source-in;
   mask:
-    radial-gradient(circle var(--notch) at 0 50%, transparent 98%, #000 100%) 0 0/100% 28px repeat-y,
-    radial-gradient(circle var(--notch) at 100% 50%, transparent 98%, #000 100%) 0 0/100% 28px repeat-y;
+    radial-gradient(circle var(--notch) at 0 50%, transparent 98%, #000 100%) 0 0/100% 24px repeat-y,
+    radial-gradient(circle var(--notch) at 100% 50%, transparent 98%, #000 100%) 0 0/100% 24px repeat-y;
   mask-composite: intersect;
 }
 
 section {
-  padding: 44px 28px;
+  padding: 48px 28px;
   position: relative;
   z-index: 1;
 }
 
+/* 첫 섹션(.hero)은 사진이 full-bleed라 padding 제거 */
+section.hero { padding: 0 0 36px; }
+
 /* ====================================================
-   FLOATING CLOUDS — 조선 길상문 구름이 둥둥 떠다니는 배경
+   FLOATING CLOUDS
    ==================================================== */
 .cloud-layer {
   position: absolute;
@@ -81,7 +79,6 @@ section {
   overflow: hidden;
   z-index: 0;
 }
-
 .floating-cloud {
   position: absolute;
   left: 0;
@@ -91,19 +88,9 @@ section {
   animation-timing-function: linear;
   transform: translate3d(-30vw, 0, 0);
 }
-.floating-cloud svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.floating-cloud.drift-right {
-  animation-name: cloudDriftRight;
-}
-.floating-cloud.drift-left {
-  animation-name: cloudDriftLeft;
-  transform: translate3d(130vw, 0, 0);
-}
+.floating-cloud svg { width: 100%; height: auto; display: block; }
+.floating-cloud.drift-right { animation-name: cloudDriftRight; }
+.floating-cloud.drift-left  { animation-name: cloudDriftLeft; transform: translate3d(130vw, 0, 0); }
 
 @keyframes cloudDriftRight {
   0%   { transform: translate3d(-40vw, 0, 0); }
@@ -115,27 +102,25 @@ section {
   50%  { transform: translate3d(40vw, -6px, 0); }
   100% { transform: translate3d(-40vw, 0, 0); }
 }
-
 @media (prefers-reduced-motion: reduce) {
   .floating-cloud {
     animation: none !important;
     transform: translate3d(20vw, 0, 0) !important;
-    opacity: 0.05 !important;
+    opacity: 0.04 !important;
   }
 }
 
-/* 섹션 구분선 = 티켓 천공 (점선 + 양끝 반원) */
+/* 섹션 사이 점선 천공 */
 section + section::before {
   content: '';
   position: absolute;
   top: 0;
   left: 24px;
   right: 24px;
-  border-top: 1.5px dashed var(--ink);
-  opacity: 0.55;
+  border-top: 1px dashed var(--line);
+  opacity: 0.35;
 }
 section + section::after {
-  /* 점선 양 끝의 살짝 큰 동그라미 */
   content: '';
   position: absolute;
   top: -8px;
@@ -144,11 +129,6 @@ section + section::after {
   height: 16px;
   background: var(--outside);
   border-radius: 50%;
-  box-shadow: calc(100vw * 0) 0 0 0 transparent;
-}
-/* 오른쪽 동그라미는 따로 — 의사요소 두 개를 ::before에 합쳐 처리 */
-section + section {
-  --punch: var(--outside);
 }
 section + section .punch-right {
   position: absolute;
@@ -160,27 +140,28 @@ section + section .punch-right {
   border-radius: 50%;
 }
 
+/* 섹션 헤더 공통 */
 .section-eyebrow {
-  font-family: 'Bebas Neue', 'Black Han Sans', sans-serif;
-  font-size: 13px;
-  letter-spacing: 0.45em;
-  color: var(--accent-red);
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  color: var(--accent);
   text-align: center;
-  margin: 0 0 6px;
+  margin: 0 0 10px;
   font-weight: 400;
+  text-transform: uppercase;
 }
-
 .section-title {
-  font-family: 'Black Han Sans', 'Nanum Myeongjo', sans-serif;
-  font-size: 22px;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 20px;
   text-align: center;
-  margin: 0 0 26px;
+  margin: 0 0 28px;
   color: var(--ink);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   font-weight: 400;
 }
 
-/* 한국 전통 구름 문양 디바이더 */
+/* 구름/회문 디바이더 */
 .cloud-divider {
   display: flex;
   align-items: center;
@@ -195,147 +176,111 @@ section + section .punch-right {
   flex: 1;
   height: 1px;
   background: var(--ink);
-  opacity: 0.5;
+  opacity: 0.25;
   max-width: 80px;
 }
-.cloud-divider .greek-line { width: 120px; height: 14px; color: var(--ink); }
+.cloud-divider .greek-line {
+  width: 110px;
+  height: 12px;
+  color: var(--ink);
+  opacity: 0.55;
+}
 
 /* ====================================================
-   HERO — 종이 청첩장 티켓을 그대로 옮긴 영역
+   HERO — full-bleed 사진 + 에디토리얼 캡션
    ==================================================== */
 
-.hero {
-  padding: 40px 28px 36px;
-  text-align: center;
-}
-
-.hero .clouds-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 10px;
-}
-.hero .clouds-top svg { width: 56px; height: auto; }
-.hero .clouds-top .moon { width: 28px; height: 28px; }
-
-.hero .happy {
-  font-family: 'Black Han Sans', 'Anton', sans-serif;
-  font-size: 30px;
-  letter-spacing: 0.02em;
-  color: var(--ink);
-  line-height: 1.1;
-  margin: 6px 0 4px;
-}
-.hero .happy-en {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 30px;
-  letter-spacing: 0.06em;
-  color: var(--ink);
-  margin-bottom: 6px;
-}
-.hero .happy-ko {
-  font-family: 'Black Han Sans', 'Nanum Myeongjo', sans-serif;
-  font-size: 22px;
-  letter-spacing: 0.06em;
-  color: var(--ink);
-  margin-top: 4px;
-}
-
-.hero .stub-ornament {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 18px auto 0;
-  color: var(--ink);
-}
-.hero .stub-ornament::before,
-.hero .stub-ornament::after {
-  content: '';
-  height: 1px;
-  background: var(--ink);
-  width: 60px;
-}
-.hero .stub-ornament svg {
-  margin: 0 8px;
-  width: 80px;
-  height: 14px;
-}
-
-.hero .ticket-row {
-  display: grid;
-  grid-template-columns: 70px 1fr;
-  align-items: center;
-  gap: 14px;
-  text-align: left;
-  padding: 16px 4px;
-  border-bottom: 1px solid var(--ink);
-}
-.hero .ticket-row:last-of-type { border-bottom: none; }
-.hero .ticket-row .label {
-  font-family: 'Black Han Sans', 'Nanum Myeongjo', sans-serif;
-  font-size: 15px;
-  color: var(--ink);
-  letter-spacing: 0.05em;
-}
-.hero .ticket-row .value {
-  font-family: 'Bebas Neue', 'Black Han Sans', sans-serif;
-  font-size: 20px;
-  letter-spacing: 0.08em;
-  text-align: center;
-  color: var(--ink);
-}
-
-.hero .names {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 6px 12px;
-  margin-top: 4px;
-}
-.hero .names .name {
-  font-family: 'Black Han Sans', 'Nanum Myeongjo', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.06em;
-  text-align: center;
-  color: var(--ink);
-}
-.hero .names .amp {
-  color: var(--ink);
-  font-size: 18px;
-}
-.hero .names .parents {
-  font-family: 'Gowun Batang', serif;
-  font-size: 12.5px;
-  color: var(--ink-soft);
-  text-align: center;
-  letter-spacing: 0.02em;
-  line-height: 1.4;
-}
-
-.hero .procession {
-  margin: 24px auto 8px;
-  display: flex;
-  justify-content: center;
-}
-.hero .procession svg {
+.hero-photo {
   width: 100%;
-  max-width: 320px;
-  height: auto;
+  aspect-ratio: 3 / 4;
+  background: var(--paper-deep);
+  overflow: hidden;
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.hero .brand {
-  font-family: 'Bebas Neue', 'Anton', sans-serif;
-  font-size: 24px;
-  letter-spacing: 0.12em;
+.hero-meta {
+  text-align: center;
+  padding: 32px 28px 4px;
+}
+
+.hero-meta .names {
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 26px;
+  letter-spacing: 0.18em;
   color: var(--ink);
+  font-weight: 400;
+  margin: 0;
+}
+.hero-meta .names .amp {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 22px;
+  margin: 0 12px;
+  font-weight: 400;
+}
+
+.hero-meta .date {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
   margin-top: 14px;
 }
-.hero .sub-brand {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.3em;
+
+.hero-meta .venue {
+  margin-top: 6px;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 14px;
+  letter-spacing: 0.1em;
   color: var(--ink-soft);
+}
+.hero-meta .venue-detail {
+  font-family: 'Inter', sans-serif;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  color: var(--ink-mute);
   margin-top: 4px;
+  text-transform: uppercase;
+}
+
+.hero-meta .ornament {
+  margin: 20px auto 4px;
+  color: var(--ink);
+  opacity: 0.4;
+}
+.hero-meta .ornament svg { width: 110px; height: 14px; display: inline-block; }
+
+.hero-meta .procession {
+  margin: 22px auto 6px;
+  color: var(--ink);
+  opacity: 0.55;
+  display: flex;
+  justify-content: center;
+}
+.hero-meta .procession svg { width: 240px; height: auto; }
+
+.hero-meta .brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  letter-spacing: 0.25em;
+  color: var(--ink);
+  margin-top: 18px;
+  font-weight: 500;
+}
+.hero-meta .sub-brand {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: 0.35em;
+  color: var(--ink-mute);
+  margin-top: 6px;
+  text-transform: uppercase;
 }
 
 /* ====================================================
@@ -344,10 +289,10 @@ section + section .punch-right {
 .greeting .greeting-body {
   white-space: pre-line;
   text-align: center;
-  font-size: 15px;
+  font-size: 14.5px;
   color: var(--ink-soft);
   line-height: 2.1;
-  margin: 0 auto 26px;
+  margin: 0 auto 22px;
   max-width: 340px;
   font-family: 'Gowun Batang', serif;
 }
@@ -356,109 +301,135 @@ section + section .punch-right {
   display: grid;
   grid-template-columns: auto auto auto;
   justify-content: center;
-  gap: 6px 14px;
+  gap: 8px 14px;
   align-items: baseline;
   text-align: center;
-  font-size: 14.5px;
-  margin-top: 16px;
+  font-size: 14px;
+  margin-top: 18px;
 }
-.parents-block .role { color: var(--ink-mute); font-size: 12.5px; letter-spacing: 0.08em; }
-.parents-block .of { color: var(--accent-red); font-size: 12.5px; }
-.parents-block .person-name { font-weight: 700; font-family: 'Black Han Sans', serif; letter-spacing: 0.06em; }
+.parents-block .role {
+  color: var(--ink-mute);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  font-family: 'Gowun Batang', serif;
+}
+.parents-block .of {
+  color: var(--accent);
+  font-size: 11.5px;
+  font-family: 'Inter', sans-serif;
+}
+.parents-block .person-name {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 15px;
+}
 
 /* ====================================================
-   INFO — 예식 일시 / 캘린더
+   INFO
    ==================================================== */
 .info .info-card {
-  border: 1.5px solid var(--ink);
-  padding: 24px 18px;
+  border: 1px solid var(--line-soft);
+  padding: 26px 18px;
   text-align: center;
-  background: var(--kraft-light);
-  position: relative;
+  background: var(--paper-soft);
 }
 .info .info-date-big {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 28px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
   letter-spacing: 0.12em;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   color: var(--ink);
+  font-weight: 500;
 }
 .info .info-date-sub {
-  font-family: 'Black Han Sans', serif;
-  color: var(--ink-soft);
-  margin-bottom: 14px;
-  font-size: 14px;
-  letter-spacing: 0.12em;
+  font-family: 'Inter', sans-serif;
+  color: var(--ink-mute);
+  margin-bottom: 16px;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
 }
 .info .info-venue {
-  font-family: 'Black Han Sans', 'Nanum Myeongjo', serif;
-  font-size: 18px;
-  letter-spacing: 0.08em;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 17px;
+  letter-spacing: 0.1em;
   margin-top: 10px;
 }
 .info .info-venue-detail {
   color: var(--ink-soft);
-  font-size: 13.5px;
+  font-size: 13px;
   margin-top: 4px;
+  font-family: 'Gowun Batang', serif;
 }
 .info .info-address {
   color: var(--ink-mute);
-  font-size: 12.5px;
+  font-size: 12px;
   margin-top: 10px;
-  line-height: 1.6;
+  line-height: 1.7;
+  font-family: 'Gowun Batang', serif;
 }
 
 .calendar {
-  margin: 22px auto 0;
+  margin: 20px auto 0;
   max-width: 320px;
-  background: var(--kraft-light);
-  border: 1.5px solid var(--ink);
+  background: var(--paper-soft);
+  border: 1px solid var(--line-soft);
   padding: 14px 12px 16px;
 }
 .calendar .cal-head {
   text-align: center;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   letter-spacing: 0.2em;
-  font-size: 16px;
+  font-size: 17px;
   margin-bottom: 10px;
   color: var(--ink);
+  font-weight: 500;
 }
 .calendar table {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
   font-size: 13px;
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 0.04em;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.02em;
 }
 .calendar th {
   font-weight: 400;
   color: var(--ink-mute);
   padding-bottom: 6px;
-  border-bottom: 1px solid var(--ink);
-  font-size: 12px;
-  letter-spacing: 0.15em;
+  border-bottom: 1px solid var(--line-hair);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
-.calendar th:first-child { color: var(--accent-red); }
+.calendar th:first-child { color: var(--accent); }
 .calendar td { padding: 6px 0; color: var(--ink); }
 .calendar td.muted { color: var(--line-soft); }
-.calendar td.sun { color: var(--accent-red); }
+.calendar td.sun   { color: var(--accent); }
 .calendar td.today {
   background: var(--ink);
-  color: var(--kraft-light);
+  color: var(--paper-soft);
   border-radius: 50%;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .dday {
   text-align: center;
   margin-top: 14px;
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 0.15em;
-  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.25em;
+  font-size: 11.5px;
   color: var(--ink-soft);
+  text-transform: uppercase;
 }
-.dday .dday-num { color: var(--accent-red); font-weight: 700; }
+.dday .dday-num {
+  color: var(--accent);
+  font-weight: 500;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+}
 
 /* ====================================================
    MAP
@@ -472,75 +443,80 @@ section + section .punch-right {
 .map .map-buttons a {
   text-align: center;
   padding: 12px 6px;
-  border: 1.5px solid var(--ink);
-  background: var(--kraft-light);
+  border: 1px solid var(--line-soft);
+  background: var(--paper-soft);
   color: var(--ink);
   text-decoration: none;
-  font-size: 13px;
-  font-family: 'Black Han Sans', sans-serif;
-  letter-spacing: 0.08em;
+  font-size: 11.5px;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
 }
-.map .map-buttons a:active { background: var(--kraft-deep); }
+.map .map-buttons a:active { background: var(--paper-deep); }
 
 .map-info-list {
-  margin-top: 18px;
+  margin: 18px 0 0;
   font-size: 13.5px;
   color: var(--ink-soft);
-  line-height: 1.85;
+  line-height: 1.9;
+  font-family: 'Gowun Batang', serif;
+  padding: 0;
 }
-.map-info-list li { padding-left: 14px; position: relative; list-style: none; }
+.map-info-list li {
+  padding-left: 14px;
+  position: relative;
+  list-style: none;
+}
 .map-info-list li::before {
   content: '·';
   position: absolute;
   left: 2px;
-  color: var(--accent-red);
+  color: var(--accent);
   font-weight: 700;
 }
-.map-info-list { padding: 0; }
 
 .map-embed {
   margin-top: 16px;
-  border: 1.5px solid var(--ink);
+  border: 1px solid var(--line-soft);
   aspect-ratio: 4 / 3;
-  background: var(--kraft-light);
+  background: var(--paper-soft);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--ink-mute);
-  font-size: 12.5px;
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 0.2em;
+  font-size: 11.5px;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
   background-image:
-    linear-gradient(135deg, transparent 49%, var(--line-soft) 49%, var(--line-soft) 51%, transparent 51%),
-    linear-gradient(45deg, transparent 49%, var(--line-soft) 49%, var(--line-soft) 51%, transparent 51%);
+    linear-gradient(135deg, transparent 49.5%, var(--line-hair) 49.5%, var(--line-hair) 50.5%, transparent 50.5%),
+    linear-gradient(45deg, transparent 49.5%, var(--line-hair) 49.5%, var(--line-hair) 50.5%, transparent 50.5%);
   background-size: 22px 22px;
 }
 
 /* ====================================================
    GALLERY
    ==================================================== */
-/* 메인 사진 슬라이드 */
 .gallery .main-swiper {
-  border: 1.5px solid var(--ink);
-  background: var(--kraft-light);
+  border: 1px solid var(--line-soft);
+  background: var(--paper-soft);
 }
 .gallery .main-swiper .swiper-slide {
   aspect-ratio: 4 / 5;
-  background: var(--kraft-light);
+  background: var(--paper-soft);
 }
 .gallery .main-swiper .swiper-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.gallery .swiper-pagination-bullet { background: var(--ink); opacity: 0.4; }
-.gallery .swiper-pagination-bullet-active { background: var(--accent-red); opacity: 1; }
+.gallery .swiper-pagination-bullet { background: var(--ink); opacity: 0.35; }
+.gallery .swiper-pagination-bullet-active { background: var(--accent); opacity: 1; }
 .gallery .swiper-button-prev,
 .gallery .swiper-button-next { color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
 .gallery .swiper-button-prev::after,
-.gallery .swiper-button-next::after { font-size: 20px; }
+.gallery .swiper-button-next::after { font-size: 18px; }
 
-/* 하단 썸네일 스트립 */
 .gallery .thumb-swiper {
   margin-top: 8px;
   padding: 6px 4px;
@@ -552,13 +528,13 @@ section + section .punch-right {
   opacity: 0.5;
   transition: opacity 0.2s, border-color 0.2s;
   border: 2px solid transparent;
-  background: var(--kraft-light);
+  background: var(--paper-soft);
   overflow: hidden;
 }
 .gallery .thumb-swiper .swiper-slide:hover { opacity: 0.85; }
 .gallery .thumb-swiper .swiper-slide-thumb-active {
   opacity: 1;
-  border-color: var(--accent-red);
+  border-color: var(--accent);
 }
 .gallery .thumb-swiper .swiper-slide img {
   width: 100%;
@@ -568,11 +544,12 @@ section + section .punch-right {
 
 .gallery .gallery-caption {
   text-align: center;
-  font-size: 11px;
+  font-size: 10.5px;
   color: var(--ink-mute);
-  margin-top: 8px;
-  letter-spacing: 0.2em;
-  font-family: 'Bebas Neue', sans-serif;
+  margin-top: 10px;
+  letter-spacing: 0.3em;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
 }
 
 /* ====================================================
@@ -584,18 +561,18 @@ section + section .punch-right {
   color: var(--ink-soft);
   margin-bottom: 18px;
   white-space: pre-line;
-  line-height: 1.9;
+  line-height: 1.95;
   font-family: 'Gowun Batang', serif;
 }
 
 .account .acc-toggle {
   width: 100%;
-  background: var(--kraft-light);
-  border: 1.5px solid var(--ink);
-  padding: 13px 18px;
+  background: var(--paper-soft);
+  border: 1px solid var(--line-soft);
+  padding: 14px 18px;
   text-align: left;
-  font-size: 14.5px;
-  font-family: 'Black Han Sans', serif;
+  font-size: 14px;
+  font-family: 'Nanum Myeongjo', serif;
   letter-spacing: 0.06em;
   margin-bottom: 10px;
   display: flex;
@@ -603,16 +580,16 @@ section + section .punch-right {
   align-items: center;
   color: var(--ink);
 }
-.account .acc-toggle .arrow { color: var(--ink); transition: transform 0.2s; }
+.account .acc-toggle .arrow { color: var(--ink-mute); transition: transform 0.2s; font-size: 12px; }
 .account .acc-toggle.open .arrow { transform: rotate(180deg); }
 
 .account .acc-list {
-  background: var(--kraft-deep);
-  border: 1.5px solid var(--ink);
+  background: var(--paper-deep);
+  border: 1px solid var(--line-soft);
   border-top: none;
   margin-top: -10px;
   margin-bottom: 10px;
-  padding: 8px 16px;
+  padding: 4px 16px;
 }
 .account .acc-row {
   display: grid;
@@ -620,49 +597,57 @@ section + section .punch-right {
   align-items: center;
   gap: 8px;
   padding: 12px 0;
-  border-bottom: 1px dashed var(--ink);
+  border-bottom: 1px dashed var(--line-soft);
   font-size: 14px;
 }
 .account .acc-row:last-child { border-bottom: none; }
-.account .acc-row .meta { color: var(--ink-soft); font-size: 12px; letter-spacing: 0.05em; }
+.account .acc-row .meta {
+  color: var(--ink-mute);
+  font-size: 11.5px;
+  letter-spacing: 0.05em;
+  font-family: 'Gowun Batang', serif;
+}
 .account .acc-row .num {
-  font-weight: 700;
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 0.06em;
+  font-weight: 500;
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 0.08em;
   margin-top: 2px;
-  font-size: 15px;
+  font-size: 16px;
 }
 .account .copy-btn {
   background: var(--ink);
-  color: var(--kraft-light);
+  color: var(--paper-soft);
   border: none;
   padding: 8px 14px;
-  font-size: 12px;
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 0.15em;
+  font-size: 10.5px;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
 }
-.account .copy-btn.copied { background: var(--accent-red); }
+.account .copy-btn.copied { background: var(--accent); }
 
 /* ====================================================
    FOOTER
    ==================================================== */
 .footer {
   text-align: center;
-  padding: 32px 28px 40px;
-  font-size: 11.5px;
-  color: var(--ink-soft);
-  letter-spacing: 0.25em;
-  font-family: 'Bebas Neue', sans-serif;
+  padding: 32px 28px 44px;
+  font-size: 10.5px;
+  color: var(--ink-mute);
+  letter-spacing: 0.35em;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
 }
-.footer .share { margin-bottom: 16px; display: flex; gap: 10px; justify-content: center; }
+.footer .share { margin-bottom: 18px; display: flex; gap: 10px; justify-content: center; }
 .footer .share button {
   background: var(--ink);
   border: none;
-  padding: 11px 22px;
-  font-size: 12px;
-  color: var(--kraft-light);
-  letter-spacing: 0.2em;
-  font-family: 'Bebas Neue', sans-serif;
+  padding: 12px 26px;
+  font-size: 11px;
+  color: var(--paper-soft);
+  letter-spacing: 0.3em;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
 }
 
 /* ====================================================
@@ -674,7 +659,7 @@ section + section .punch-right {
   left: 50%;
   transform: translateX(-50%);
   background: var(--ink);
-  color: var(--kraft-light);
+  color: var(--paper-soft);
   padding: 12px 22px;
   border-radius: 24px;
   font-size: 13px;
@@ -685,5 +670,5 @@ section + section .punch-right {
 }
 @keyframes toastIn {
   from { opacity: 0; transform: translate(-50%, 10px); }
-  to { opacity: 1; transform: translate(-50%, 0); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
 }

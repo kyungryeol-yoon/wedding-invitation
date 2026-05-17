@@ -4,7 +4,7 @@ export const invitation = {
     name: '윤경렬',
     father: null, // 표시 안 함
     mother: '손명숙',
-    role: '아들', // '장남' / '아들' 등
+    role: '아들',
     accounts: [
       { bank: '신한은행', number: '110-000-000000', holder: '윤경렬' },
     ],
@@ -21,7 +21,7 @@ export const invitation = {
 
   wedding: {
     dateISO: '2026-09-13T12:00:00+09:00',
-    displayDate: '2026. 09. 13. SUN  12:00',
+    displayDate: '2026. 09. 13. SUNDAY · 12:00',
     displayDateKo: '2026년 9월 13일 일요일 낮 12시',
     venueName: '롯데월드 전통혼례',
     venueDetail: 'B1F · 잠실역 4번 출구',
@@ -53,10 +53,13 @@ export const invitation = {
     '/wedding-invitation/gallery/sample-4.svg',
   ],
 
-  // 메인 사진 (없으면 null)
-  heroImage: null,
+  // 메인 사진 — public/gallery/hero.jpg 로 파일 떨어뜨리면 자동 표시
+  // (없으면 hero.svg 플레이스홀더가 표시됩니다)
+  heroImage: '/wedding-invitation/gallery/hero.jpg',
+  heroImageFallback: '/wedding-invitation/gallery/hero.svg',
+  heroTagline: 'You & Me, Always',
 
-  // 종이 청첩장 컨셉 (티켓 하단 표기)
+  // 종이 청첩장 컨셉
   brand: 'H.R WEDDING',
   subBrand: 'LOTTE WORLD · TRADITIONAL WEDDING',
 }
