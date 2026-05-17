@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 200" width="220" height="200">
+  <!-- 지붕 꼭지 -->
+  <path d="M105 6 L115 6 L120 18 L100 18 Z" fill="#000"/>
+  <!-- 지붕 -->
+  <path d="M30 50 L110 22 L190 50 L170 60 L50 60 Z" fill="#000"/>
+  <!-- 가마 본체 외곽 -->
+  <path d="M50 60 L50 140 L60 152 L160 152 L170 140 L170 60 Z" fill="none" stroke="#000" stroke-width="6"/>
+  <!-- 처마 장식 -->
+  <g fill="#000">
+    <path d="M70 60 L72 76 L66 76 Z"/>
+    <path d="M100 60 L102 76 L96 76 Z"/>
+    <path d="M130 60 L132 76 L126 76 Z"/>
+    <path d="M150 60 L152 76 L146 76 Z"/>
+  </g>
+  <!-- 안에 신부 얼굴 (단순화) -->
+  <rect x="85" y="92" width="50" height="44" fill="#000"/>
+  <circle cx="110" cy="112" r="14" fill="#faf6ed"/>
+  <path d="M104 108 Q108 100 116 102" stroke="#000" stroke-width="2" fill="none"/>
+  <!-- 손잡이 봉 -->
+  <line x1="14" y1="120" x2="206" y2="120" stroke="#000" stroke-width="6" stroke-linecap="round"/>
+  <!-- 좌측 가마꾼 -->
+  <g>
+    <circle cx="26" cy="100" r="10" fill="none" stroke="#000" stroke-width="4"/>
+    <path d="M16 95 H36 L42 90 H10 Z" fill="#000"/>
+    <path d="M26 110 V148 L18 174 M26 148 L34 174" stroke="#000" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M22 118 L22 142 L30 142 L30 118 Z" fill="#000"/>
+  </g>
+  <!-- 우측 가마꾼 -->
+  <g>
+    <circle cx="194" cy="100" r="10" fill="none" stroke="#000" stroke-width="4"/>
+    <path d="M184 95 H204 L210 90 H178 Z" fill="#000"/>
+    <path d="M194 110 V148 L186 174 M194 148 L202 174" stroke="#000" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M190 118 L190 142 L198 142 L198 118 Z" fill="#000"/>
+  </g>
+</svg>
