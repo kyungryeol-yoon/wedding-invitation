@@ -86,6 +86,7 @@ section.hero { padding: 0 0 36px; }
   will-change: transform;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  --sway: 6px;
   transform: translate3d(-30vw, 0, 0);
 }
 .floating-cloud svg,
@@ -95,12 +96,16 @@ section.hero { padding: 0 0 36px; }
 
 @keyframes cloudDriftRight {
   0%   { transform: translate3d(-40vw, 0, 0); }
-  50%  { transform: translate3d(40vw, 6px, 0); }
+  25%  { transform: translate3d(0vw, calc(var(--sway) * -1), 0); }
+  50%  { transform: translate3d(40vw, var(--sway), 0); }
+  75%  { transform: translate3d(80vw, calc(var(--sway) * -0.6), 0); }
   100% { transform: translate3d(130vw, 0, 0); }
 }
 @keyframes cloudDriftLeft {
   0%   { transform: translate3d(130vw, 0, 0); }
-  50%  { transform: translate3d(40vw, -6px, 0); }
+  25%  { transform: translate3d(80vw, var(--sway), 0); }
+  50%  { transform: translate3d(40vw, calc(var(--sway) * -1), 0); }
+  75%  { transform: translate3d(0vw, calc(var(--sway) * 0.6), 0); }
   100% { transform: translate3d(-40vw, 0, 0); }
 }
 @media (prefers-reduced-motion: reduce) {
