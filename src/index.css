@@ -68,6 +68,60 @@ img { max-width: 100%; display: block; }
 section {
   padding: 44px 28px;
   position: relative;
+  z-index: 1;
+}
+
+/* ====================================================
+   FLOATING CLOUDS — 조선 길상문 구름이 둥둥 떠다니는 배경
+   ==================================================== */
+.cloud-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.floating-cloud {
+  position: absolute;
+  left: 0;
+  color: var(--ink);
+  will-change: transform;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transform: translate3d(-30vw, 0, 0);
+}
+.floating-cloud svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.floating-cloud.drift-right {
+  animation-name: cloudDriftRight;
+}
+.floating-cloud.drift-left {
+  animation-name: cloudDriftLeft;
+  transform: translate3d(130vw, 0, 0);
+}
+
+@keyframes cloudDriftRight {
+  0%   { transform: translate3d(-40vw, 0, 0); }
+  50%  { transform: translate3d(40vw, 6px, 0); }
+  100% { transform: translate3d(130vw, 0, 0); }
+}
+@keyframes cloudDriftLeft {
+  0%   { transform: translate3d(130vw, 0, 0); }
+  50%  { transform: translate3d(40vw, -6px, 0); }
+  100% { transform: translate3d(-40vw, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-cloud {
+    animation: none !important;
+    transform: translate3d(20vw, 0, 0) !important;
+    opacity: 0.05 !important;
+  }
 }
 
 /* 섹션 구분선 = 티켓 천공 (점선 + 양끝 반원) */
