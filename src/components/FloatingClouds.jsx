@@ -1,25 +1,79 @@
+import { useEffect, useRef, useState } from 'react'
 import OrnamentImg from './OrnamentImg'
 import { invitation } from '../data/invitation'
+import { effectsConfig } from '../config/effects'
 
-// 구름 배치 — top(%) / 너비(px) / 방향 / 속도(sec) / 지연(sec) / 투명도 / 사용할 구름 종류
-const PLAN = [
-  { top: '4%',  size: 130, dir:  1, dur: 70,  delay: 0,   opacity: 0.10, key: 'cloud1' },
-  { top: '12%', size: 90,  dir: -1, dur: 90,  delay: -25, opacity: 0.08, key: 'cloud3' },
-  { top: '22%', size: 150, dir:  1, dur: 110, delay: -40, opacity: 0.07, key: 'cloud2' },
-  { top: '32%', size: 100, dir: -1, dur: 80,  delay: -10, opacity: 0.10, key: 'cloud1' },
-  { top: '42%', size: 120, dir:  1, dur: 100, delay: -55, opacity: 0.07, key: 'cloud2' },
-  { top: '52%', size: 95,  dir: -1, dur: 75,  delay: -30, opacity: 0.09, key: 'cloud3' },
-  { top: '62%', size: 140, dir:  1, dur: 95,  delay: -15, opacity: 0.08, key: 'cloud1' },
-  { top: '72%', size: 95,  dir: -1, dur: 85,  delay: -45, opacity: 0.10, key: 'cloud3' },
-  { top: '82%', size: 125, dir:  1, dur: 105, delay: -20, opacity: 0.07, key: 'cloud2' },
-  { top: '92%', size: 90,  dir: -1, dur: 78,  delay: -5,  opacity: 0.09, key: 'cloud1' },
-]
+function rand(min, max) {
+  return min + Math.random() * (max - min)
+}
+function pick(arr) {
+  return arr[Math.floor(Math.random() * arr.length)]
+}
+
+function buildPlan(config, pageH, viewportH) {
+  const pages = Math.max(1, pageH / Math.max(viewportH, 1))
+  const count =
+    typeof config.count === 'number'
+      ? config.count
+      : Math.max(3, Math.round(config.density * pages))
+
+  return Array.from({ length: count }, (_, i) => {
+    const base = ((i + 0.5) / count) * 100 // 균등 분포
+    const jitter = rand(-config.verticalJitter, config.verticalJitter) / count
+    const top = Math.max(0, Math.min(100, base + jitter * count * 0.5))
+
+    return {
+      top: `${top}%`,
+      size: Math.round(rand(config.sizeMin, config.sizeMax)),
+      dir: Math.random() < config.rightwardRatio ? 1 : -1,
+      dur: rand(config.speedMin, config.speedMax),
+      delay: -rand(0, config.speedMax),
+      opacity: rand(config.opacityMin, config.opacityMax),
+      sway: rand(config.swayAmount * 0.4, config.swayAmount),
+      key: pick(config.variants),
+    }
+  })
+}
 
 export default function FloatingClouds() {
+  const config = effectsConfig.clouds
   const { ornaments } = invitation
+  const layerRef = useRef(null)
+  const [plan, setPlan] = useState([])
+
+  useEffect(() => {
+    if (!config.enabled) return
+
+    let cancelled = false
+    const measure = () => {
+      if (cancelled) return
+      const parent = layerRef.current?.parentElement
+      if (!parent) return
+      const pageH = parent.scrollHeight
+      const vH = window.innerHeight
+      setPlan(buildPlan(config, pageH, vH))
+    }
+
+    // 폰트·이미지가 어느 정도 로드된 뒤 한 번만 측정 → 구름이 흔들리지 않음
+    const t1 = setTimeout(measure, 250)
+    let t2
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(() => {
+        t2 = setTimeout(measure, 150)
+      })
+    }
+    return () => {
+      cancelled = true
+      clearTimeout(t1)
+      if (t2) clearTimeout(t2)
+    }
+  }, [config])
+
+  if (!config.enabled) return null
+
   return (
-    <div className="cloud-layer" aria-hidden="true">
-      {PLAN.map((c, i) => (
+    <div className="cloud-layer" aria-hidden="true" ref={layerRef}>
+      {plan.map((c, i) => (
         <div
           key={i}
           className={`floating-cloud ${c.dir > 0 ? 'drift-right' : 'drift-left'}`}
@@ -29,6 +83,7 @@ export default function FloatingClouds() {
             animationDuration: `${c.dur}s`,
             animationDelay: `${c.delay}s`,
             opacity: c.opacity,
+            '--sway': `${c.sway}px`,
           }}
         >
           <OrnamentImg asset={ornaments[c.key]} alt="" />

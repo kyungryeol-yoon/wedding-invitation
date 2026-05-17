@@ -98,6 +98,43 @@ src/
     OrnamentImg.jsx          # PNG → SVG 자동 폴백 헬퍼
 ```
 
+## ☁️ 배경 효과 튜닝 (떠다니는 구름)
+
+구름 개수·속도·간격·흔들림 등은 **`src/config/effects.js`** 한 파일에서 조절합니다.
+
+```js
+// src/config/effects.js
+export const effectsConfig = {
+  clouds: {
+    enabled: true,         // 켜기/끄기
+    count: null,           // 숫자 = 고정 개수 / null = 페이지 길이 따라 자동
+    density: 4,            // 한 화면당 구름 몇 개 (count: null 일 때)
+    verticalJitter: 35,    // 세로 간격을 얼마나 흔들지 (0=균등, 50=자유분방)
+    sizeMin: 80,
+    sizeMax: 170,          // 크기 px 범위
+    speedMin: 60,
+    speedMax: 120,         // 한 번 가로지르는 시간(초). 작을수록 빠름
+    swayAmount: 8,         // 위아래 둥실거리는 폭(px), 0 이면 일직선
+    opacityMin: 0.05,
+    opacityMax: 0.12,      // 투명도 (0.04~0.15 권장)
+    rightwardRatio: 0.5,   // 오른쪽 방향 비율 (0~1)
+    variants: ['cloud1', 'cloud2', 'cloud3'],  // 사용할 구름 종류
+  },
+}
+```
+
+**자주 쓰는 조정**
+
+| 원하는 변화 | 어떻게 |
+| --- | --- |
+| 구름을 더 많이 보고 싶음 | `density` 를 4 → 6 으로 |
+| 구름이 너무 빠름 / 산만함 | `speedMin/Max` 를 80 / 160 으로 |
+| 구름을 좀 더 또렷하게 | `opacityMax` 를 0.12 → 0.18 |
+| 더 둥실둥실 흔들리게 | `swayAmount` 를 8 → 16 |
+| 일정한 간격으로 정렬 | `verticalJitter` 를 0 |
+| 모든 구름이 한 방향 | `rightwardRatio` 를 1 또는 0 |
+| 잠시 끄기 | `enabled: false` |
+
 ## 🎨 컬러 팔레트
 
 `src/index.css` 의 `:root` 변수에서 변경 가능합니다.
