@@ -549,11 +549,26 @@ section + section .punch-right {
 .gallery .main-swiper .swiper-slide {
   aspect-ratio: 4 / 5;
   background: var(--paper-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gallery-slide-btn {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: zoom-in;
 }
 .gallery .main-swiper .swiper-slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;   /* 가로/세로 사진 모두 잘림 없이 */
+  display: block;
 }
 .gallery .swiper-pagination-bullet { background: var(--ink); opacity: 0.35; }
 .gallery .swiper-pagination-bullet-active { background: var(--accent); opacity: 1; }
@@ -716,4 +731,112 @@ section + section .punch-right {
 @keyframes toastIn {
   from { opacity: 0; transform: translate(-50%, 10px); }
   to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* ====================================================
+   LIGHTBOX — 풀스크린 사진 확대 보기
+   ==================================================== */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 17, 14, 0.96);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  animation: lightboxIn 0.15s ease-out;
+}
+@keyframes lightboxIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.lightbox-toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 110;
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 14px;
+  padding-top: max(12px, env(safe-area-inset-top));
+  pointer-events: none;
+}
+.lightbox-close {
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  pointer-events: auto;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox-close:hover { background: rgba(255, 255, 255, 0.2); }
+
+.lightbox-swiper {
+  width: 100%;
+  height: 100%;
+}
+.lightbox-swiper .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox-swiper .swiper-zoom-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 12px 60px;
+}
+.lightbox-swiper .swiper-zoom-container img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.lightbox-swiper .swiper-button-prev,
+.lightbox-swiper .swiper-button-next {
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+.lightbox-swiper .swiper-button-prev::after,
+.lightbox-swiper .swiper-button-next::after { font-size: 24px; }
+
+.lightbox-swiper .swiper-pagination {
+  color: rgba(255, 255, 255, 0.85);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  bottom: 24px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox-hint {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 10.5px;
+  letter-spacing: 0.25em;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  padding: 0 16px 8px;
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+  pointer-events: none;
 }
