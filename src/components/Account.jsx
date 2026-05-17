@@ -11,7 +11,7 @@ function AccountGroup({ label, accounts, onCopy }) {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
       >
-        <span>{label} 측 계좌번호</span>
+        <span>{label} 측 마음 전하실 곳</span>
         <span className="arrow">▾</span>
       </button>
       {open && (
@@ -64,7 +64,7 @@ function CopyButton({ text, onCopy }) {
       className={`copy-btn ${copied ? 'copied' : ''}`}
       onClick={handle}
     >
-      {copied ? '복사됨' : '복사'}
+      {copied ? 'COPIED' : 'COPY'}
     </button>
   )
 }
@@ -73,12 +73,13 @@ export default function Account({ onCopy }) {
   const { groom, bride } = invitation
   return (
     <section className="account">
-      <div className="section-title">CONGRATULATIONS</div>
-      <h2 className="section-subtitle">마음 전하실 곳</h2>
+      <span className="punch-right" />
+      <div className="section-eyebrow">CONGRATULATIONS</div>
+      <h2 className="section-title">마음 전하실 곳</h2>
 
       <p className="account-intro">
         {`참석이 어려우신 분들을 위해
-계좌번호를 안내드립니다.`}
+계좌번호로 마음을 전해주실 수 있습니다.`}
       </p>
 
       <AccountGroup label="신랑" accounts={groom.accounts} onCopy={onCopy} />
