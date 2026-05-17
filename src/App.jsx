@@ -6,6 +6,7 @@ import MapSection from './components/MapSection'
 import Gallery from './components/Gallery'
 import Account from './components/Account'
 import Footer from './components/Footer'
+import FloatingClouds from './components/FloatingClouds'
 
 function App() {
   const [toast, setToast] = useState('')
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <div className="app">
+      <FloatingClouds />
       <Hero />
       <Greeting />
       <EventInfo />
