@@ -423,10 +423,47 @@ section + section .punch-right {
 .calendar td.muted { color: var(--line-soft); }
 .calendar td.sun   { color: var(--accent); }
 .calendar td.today {
-  background: var(--ink);
+  padding: 6px 0 4px;
+  vertical-align: top;
+  color: var(--accent);
+  background: transparent;
+  border-radius: 0;
+  font-weight: 400;
+}
+.today-marker {
+  position: relative;
+  width: 26px;
+  height: 24px;
+  margin: 0 auto;
+  color: var(--accent);
+}
+.today-marker .heart-shape {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.today-marker .day-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--paper-soft);
-  border-radius: 50%;
-  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 11.5px;
+  padding-top: 1px;
+  letter-spacing: 0;
+}
+.day-time {
+  font-family: 'Gowun Batang', serif;
+  font-size: 10px;
+  color: var(--accent);
+  white-space: nowrap;
+  text-align: center;
+  margin-top: 2px;
+  letter-spacing: 0.02em;
+  font-weight: 700;
 }
 
 .dday-block {

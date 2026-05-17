@@ -1,10 +1,35 @@
 import { invitation } from '../data/invitation'
 
+function formatKoreanTime(date) {
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+  const ampm = hour < 12 ? '오전' : '오후'
+  const h12 = hour % 12 || 12
+  return minute === 0
+    ? `${ampm} ${h12}시`
+    : `${ampm} ${h12}시 ${minute}분`
+}
+
+function HeartMark({ day }) {
+  return (
+    <div className="today-marker" aria-hidden="true">
+      <svg className="heart-shape" viewBox="0 0 32 29">
+        <path
+          d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"
+          fill="currentColor"
+        />
+      </svg>
+      <span className="day-num">{day}</span>
+    </div>
+  )
+}
+
 function Calendar({ dateISO }) {
   const target = new Date(dateISO)
   const year = target.getFullYear()
   const month = target.getMonth()
   const targetDay = target.getDate()
+  const timeText = formatKoreanTime(target)
 
   const first = new Date(year, month, 1)
   const startWeekday = first.getDay()
@@ -36,22 +61,22 @@ function Calendar({ dateISO }) {
         <tbody>
           {weeks.map((week, wi) => (
             <tr key={wi}>
-              {week.map((d, di) => (
-                <td
-                  key={di}
-                  className={
-                    d === targetDay
-                      ? 'today'
-                      : di === 0 && d
-                        ? 'sun'
-                        : !d
-                          ? 'muted'
-                          : ''
-                  }
-                >
-                  {d || ''}
-                </td>
-              ))}
+              {week.map((d, di) => {
+                if (d === targetDay) {
+                  return (
+                    <td key={di} className="today">
+                      <HeartMark day={d} />
+                      <div className="day-time">{timeText}</div>
+                    </td>
+                  )
+                }
+                const cls = di === 0 && d ? 'sun' : !d ? 'muted' : ''
+                return (
+                  <td key={di} className={cls}>
+                    {d || ''}
+                  </td>
+                )
+              })}
             </tr>
           ))}
         </tbody>
