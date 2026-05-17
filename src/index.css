@@ -424,21 +424,39 @@ section + section .punch-right {
   font-weight: 500;
 }
 
-.dday {
+.dday-block {
   text-align: center;
-  margin-top: 14px;
-  font-family: 'Inter', sans-serif;
-  letter-spacing: 0.25em;
-  font-size: 11.5px;
-  color: var(--ink-soft);
-  text-transform: uppercase;
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line-hair);
 }
-.dday .dday-num {
-  color: var(--accent);
-  font-weight: 500;
-  font-family: 'Cormorant Garamond', serif;
+.dday-date {
+  font-family: 'Gowun Batang', serif;
+  font-size: 13px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+.dday-message {
+  font-family: 'Gowun Batang', serif;
   font-size: 14px;
-  letter-spacing: 0.1em;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+}
+.dday-message .heart {
+  color: var(--accent);
+  margin: 0 4px;
+  font-size: 13px;
+  vertical-align: 1px;
+}
+.dday-message .dday-num {
+  color: var(--accent);
+  font-weight: 700;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  margin: 0 1px;
+  letter-spacing: 0.02em;
 }
 
 /* ====================================================
