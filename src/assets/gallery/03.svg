@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
-  <rect width="400" height="500" fill="#efe7d3"/>
-  <path d="M0,400 Q200,300 400,400 L400,500 L0,500 Z" fill="#a8322a" opacity="0.18"/>
-  <circle cx="120" cy="180" r="50" fill="#b8956a" opacity="0.4"/>
-  <circle cx="280" cy="240" r="70" fill="#1e5673" opacity="0.2"/>
-  <text x="200" y="430" font-family="serif" font-size="22" fill="#4a423d" text-anchor="middle" letter-spacing="6">SAMPLE 3</text>
-</svg>
