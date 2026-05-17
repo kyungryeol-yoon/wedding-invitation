@@ -62,4 +62,31 @@ export const invitation = {
   // 종이 청첩장 컨셉
   brand: 'H.R WEDDING',
   subBrand: 'LOTTE WORLD · TRADITIONAL WEDDING',
+
+  // 전통 일러스트 경로
+  // - 실제 PNG를 public/ornaments/ 에 같은 이름으로 올리면 자동 적용
+  // - PNG 가 없으면 .svg 플레이스홀더로 자동 폴백 (onError)
+  // - 다른 이름으로 올리려면 src 값만 바꾸면 됩니다.
+  ornaments: {
+    cloud1: {
+      src: '/wedding-invitation/ornaments/cloud-1.png',
+      fallback: '/wedding-invitation/ornaments/cloud-1.svg',
+    },
+    cloud2: {
+      src: '/wedding-invitation/ornaments/cloud-2.png',
+      fallback: '/wedding-invitation/ornaments/cloud-2.svg',
+    },
+    cloud3: {
+      src: '/wedding-invitation/ornaments/cloud-3.png',
+      fallback: '/wedding-invitation/ornaments/cloud-3.svg',
+    },
+    palanquin: {
+      src: '/wedding-invitation/ornaments/palanquin.png',
+      fallback: '/wedding-invitation/ornaments/palanquin.svg',
+    },
+    horseRider: {
+      src: '/wedding-invitation/ornaments/horse-rider.png',
+      fallback: '/wedding-invitation/ornaments/horse-rider.svg',
+    },
+  },
 }
