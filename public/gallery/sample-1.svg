@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <rect width="400" height="500" fill="#ece3cf"/>
+  <circle cx="200" cy="200" r="120" fill="#d9cfb7" opacity="0.6"/>
+  <circle cx="200" cy="200" r="80" fill="#a8322a" opacity="0.18"/>
+  <text x="200" y="420" font-family="serif" font-size="22" fill="#4a423d" text-anchor="middle" letter-spacing="6">SAMPLE 1</text>
+  <text x="200" y="450" font-family="serif" font-size="12" fill="#7a7367" text-anchor="middle" letter-spacing="3">사진을 public/gallery 에 넣어주세요</text>
+</svg>
