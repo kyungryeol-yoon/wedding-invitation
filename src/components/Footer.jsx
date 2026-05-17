@@ -4,12 +4,12 @@ export default function Footer({ onShare }) {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: '저희 결혼합니다',
-          text: '모바일 청첩장을 보내드립니다.',
+          title: '윤경렬 ♥ 김호정 결혼합니다',
+          text: '2026. 09. 13. SUN 12:00 · 롯데월드 전통혼례',
           url,
         })
       } catch {
-        // user cancelled
+        /* user cancelled */
       }
     } else {
       try {
@@ -22,13 +22,14 @@ export default function Footer({ onShare }) {
   }
 
   return (
-    <footer className="footer">
+    <section className="footer">
+      <span className="punch-right" />
       <div className="share">
         <button type="button" onClick={share}>
-          청첩장 공유하기
+          SHARE INVITATION
         </button>
       </div>
-      <div>made with ❤︎</div>
-    </footer>
+      <div>H.R · WEDDING · 2026</div>
+    </section>
   )
 }

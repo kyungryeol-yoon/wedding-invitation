@@ -11,8 +11,9 @@ export default function Gallery() {
 
   return (
     <section className="gallery">
-      <div className="section-title">GALLERY</div>
-      <h2 className="section-subtitle">우리의 순간들</h2>
+      <span className="punch-right" />
+      <div className="section-eyebrow">GALLERY</div>
+      <h2 className="section-title">우리의 순간들</h2>
 
       <Swiper
         modules={[Pagination, Navigation, A11y]}
@@ -29,7 +30,7 @@ export default function Gallery() {
         ))}
       </Swiper>
 
-      <div className="gallery-caption">← 좌우로 넘겨보세요 →</div>
+      <div className="gallery-caption">← SWIPE →</div>
     </section>
   )
 }

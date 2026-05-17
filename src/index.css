@@ -1,26 +1,25 @@
 :root {
-  /* 전통 한지/먹 색감 팔레트 */
-  --paper: #f5efe0;
-  --paper-deep: #ece3cf;
-  --ink: #2c2826;
-  --ink-soft: #4a423d;
-  --line: #d9cfb7;
-  --accent-red: #a8322a;
-  --accent-blue: #1e5673;
-  --gold: #b8956a;
-  --shadow: rgba(44, 40, 38, 0.08);
+  /* 크라프트 한지 팔레트 (종이 청첩장과 동일 톤) */
+  --kraft: #e8dcc4;
+  --kraft-deep: #d9c9a8;
+  --kraft-light: #f1e7d2;
+  --ink: #161412;
+  --ink-soft: #3b332c;
+  --ink-mute: #6b5f51;
+  --line: #2a241f;
+  --line-soft: #b7a785;
+  --accent-red: #b8332a;
+  --paper-edge: #efe6cf;
+  /* 외부(앱 박스 바깥) 배경 */
+  --outside: #cbb88f;
 }
 
-* {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
-  background: #efe8d5;
+  background: var(--outside);
   color: var(--ink);
   font-family: 'Gowun Batang', 'Nanum Myeongjo', 'Apple SD Gothic Neo',
     'Noto Serif KR', serif;
@@ -30,347 +29,504 @@ body {
   word-break: keep-all;
 }
 
-#root {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-}
+#root { min-height: 100vh; display: flex; justify-content: center; }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
+button { font-family: inherit; cursor: pointer; }
+img { max-width: 100%; display: block; }
 
-img {
-  max-width: 100%;
-  display: block;
-}
+/* ====================================================
+   APP — 한 장의 긴 티켓
+   양 옆에 살짝 스캘롭(반원 노치)이 들어가고,
+   섹션 사이에는 점선 + 양 끝 동그란 천공 구멍이 있다.
+   ==================================================== */
 
 .app {
   width: 100%;
-  max-width: 480px;
-  background: var(--paper);
+  max-width: 460px;
+  background:
+    /* 한지 결 느낌 (subtle noise) */
+    repeating-linear-gradient(115deg,
+      rgba(120, 95, 60, 0.03) 0 2px, transparent 2px 6px),
+    repeating-linear-gradient(25deg,
+      rgba(120, 95, 60, 0.025) 0 1px, transparent 1px 5px),
+    var(--kraft);
   position: relative;
-  box-shadow: 0 0 40px var(--shadow);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.18);
   overflow: hidden;
+  /* 양 옆 스캘롭 노치 */
+  --notch: 10px;
+  -webkit-mask:
+    radial-gradient(circle var(--notch) at 0 50%, transparent 98%, #000 100%) 0 0/100% 28px repeat-y,
+    radial-gradient(circle var(--notch) at 100% 50%, transparent 98%, #000 100%) 0 0/100% 28px repeat-y;
+  -webkit-mask-composite: source-in;
+  mask:
+    radial-gradient(circle var(--notch) at 0 50%, transparent 98%, #000 100%) 0 0/100% 28px repeat-y,
+    radial-gradient(circle var(--notch) at 100% 50%, transparent 98%, #000 100%) 0 0/100% 28px repeat-y;
+  mask-composite: intersect;
 }
 
 section {
-  padding: 56px 28px;
-  border-bottom: 1px solid var(--line);
+  padding: 44px 28px;
   position: relative;
 }
 
-section:last-child {
-  border-bottom: none;
+/* 섹션 구분선 = 티켓 천공 (점선 + 양끝 반원) */
+section + section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  border-top: 1.5px dashed var(--ink);
+  opacity: 0.55;
+}
+section + section::after {
+  /* 점선 양 끝의 살짝 큰 동그라미 */
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  width: 16px;
+  height: 16px;
+  background: var(--outside);
+  border-radius: 50%;
+  box-shadow: calc(100vw * 0) 0 0 0 transparent;
+}
+/* 오른쪽 동그라미는 따로 — 의사요소 두 개를 ::before에 합쳐 처리 */
+section + section {
+  --punch: var(--outside);
+}
+section + section .punch-right {
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  width: 16px;
+  height: 16px;
+  background: var(--outside);
+  border-radius: 50%;
+}
+
+.section-eyebrow {
+  font-family: 'Bebas Neue', 'Black Han Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.45em;
+  color: var(--accent-red);
+  text-align: center;
+  margin: 0 0 6px;
+  font-weight: 400;
 }
 
 .section-title {
-  font-family: 'Nanum Myeongjo', serif;
-  font-size: 14px;
-  letter-spacing: 0.4em;
-  color: var(--accent-red);
-  text-align: center;
-  margin: 0 0 8px;
-  font-weight: 700;
-}
-
-.section-subtitle {
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Black Han Sans', 'Nanum Myeongjo', sans-serif;
   font-size: 22px;
   text-align: center;
-  margin: 0 0 32px;
+  margin: 0 0 26px;
   color: var(--ink);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
+  font-weight: 400;
 }
 
-.divider {
+/* 한국 전통 구름 문양 디바이더 */
+.cloud-divider {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 24px auto;
-  width: 60%;
+  gap: 10px;
+  margin: 22px auto;
+  color: var(--ink);
 }
-.divider::before,
-.divider::after {
+.cloud-divider::before,
+.cloud-divider::after {
   content: '';
   flex: 1;
   height: 1px;
-  background: var(--line);
+  background: var(--ink);
+  opacity: 0.5;
+  max-width: 80px;
 }
-.divider span {
-  padding: 0 12px;
-  color: var(--gold);
-  font-size: 18px;
-}
+.cloud-divider .greek-line { width: 120px; height: 14px; color: var(--ink); }
 
-/* ---------- HERO ---------- */
+/* ====================================================
+   HERO — 종이 청첩장 티켓을 그대로 옮긴 영역
+   ==================================================== */
+
 .hero {
-  padding: 64px 28px 48px;
+  padding: 40px 28px 36px;
   text-align: center;
-  background:
-    radial-gradient(ellipse at top, rgba(168, 50, 42, 0.06), transparent 60%),
-    var(--paper);
 }
 
-.hero .hero-mark {
-  font-family: 'Nanum Myeongjo', serif;
-  letter-spacing: 0.5em;
-  color: var(--accent-red);
-  font-size: 12px;
-  margin-bottom: 24px;
+.hero .clouds-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.hero .clouds-top svg { width: 56px; height: auto; }
+.hero .clouds-top .moon { width: 28px; height: 28px; }
+
+.hero .happy {
+  font-family: 'Black Han Sans', 'Anton', sans-serif;
+  font-size: 30px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  line-height: 1.1;
+  margin: 6px 0 4px;
+}
+.hero .happy-en {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.hero .happy-ko {
+  font-family: 'Black Han Sans', 'Nanum Myeongjo', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  margin-top: 4px;
 }
 
-.hero .hero-image {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  border: 1px solid var(--line);
-  margin-bottom: 28px;
-  background: var(--paper-deep);
-}
-
-.hero .hero-names {
-  font-family: 'Nanum Myeongjo', serif;
-  font-size: 28px;
-  letter-spacing: 0.2em;
+.hero .stub-ornament {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
-  margin: 8px 0 16px;
+  margin: 18px auto 0;
+  color: var(--ink);
 }
-.hero .hero-names .amp {
-  color: var(--accent-red);
-  font-size: 22px;
+.hero .stub-ornament::before,
+.hero .stub-ornament::after {
+  content: '';
+  height: 1px;
+  background: var(--ink);
+  width: 60px;
+}
+.hero .stub-ornament svg {
+  margin: 0 8px;
+  width: 80px;
+  height: 14px;
 }
 
-.hero .hero-date {
+.hero .ticket-row {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--ink);
+}
+.hero .ticket-row:last-of-type { border-bottom: none; }
+.hero .ticket-row .label {
+  font-family: 'Black Han Sans', 'Nanum Myeongjo', sans-serif;
   font-size: 15px;
-  color: var(--ink-soft);
-  letter-spacing: 0.1em;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+}
+.hero .ticket-row .value {
+  font-family: 'Bebas Neue', 'Black Han Sans', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: var(--ink);
 }
 
-.hero .hero-venue {
-  font-size: 13px;
+.hero .names {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 6px 12px;
+  margin-top: 4px;
+}
+.hero .names .name {
+  font-family: 'Black Han Sans', 'Nanum Myeongjo', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: var(--ink);
+}
+.hero .names .amp {
+  color: var(--ink);
+  font-size: 18px;
+}
+.hero .names .parents {
+  font-family: 'Gowun Batang', serif;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  text-align: center;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.hero .procession {
+  margin: 24px auto 8px;
+  display: flex;
+  justify-content: center;
+}
+.hero .procession svg {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+
+.hero .brand {
+  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+  margin-top: 14px;
+}
+.hero .sub-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.3em;
   color: var(--ink-soft);
   margin-top: 4px;
 }
 
-/* ---------- GREETING ---------- */
+/* ====================================================
+   GREETING
+   ==================================================== */
 .greeting .greeting-body {
   white-space: pre-line;
   text-align: center;
-  font-size: 15.5px;
+  font-size: 15px;
   color: var(--ink-soft);
-  line-height: 2;
-  margin: 0 auto 32px;
-  max-width: 360px;
+  line-height: 2.1;
+  margin: 0 auto 26px;
+  max-width: 340px;
+  font-family: 'Gowun Batang', serif;
 }
 
-.parents {
+.parents-block {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 8px 16px;
-  align-items: center;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  gap: 6px 14px;
+  align-items: baseline;
   text-align: center;
   font-size: 14.5px;
-  margin-top: 12px;
+  margin-top: 16px;
 }
-.parents .role {
-  color: var(--ink-soft);
-  font-size: 13px;
-  letter-spacing: 0.1em;
-}
-.parents .of {
-  color: var(--accent-red);
-}
-.parents .name {
-  font-weight: 700;
-}
+.parents-block .role { color: var(--ink-mute); font-size: 12.5px; letter-spacing: 0.08em; }
+.parents-block .of { color: var(--accent-red); font-size: 12.5px; }
+.parents-block .person-name { font-weight: 700; font-family: 'Black Han Sans', serif; letter-spacing: 0.06em; }
 
-/* ---------- INFO ---------- */
+/* ====================================================
+   INFO — 예식 일시 / 캘린더
+   ==================================================== */
 .info .info-card {
-  border: 1px solid var(--line);
-  padding: 28px 20px;
+  border: 1.5px solid var(--ink);
+  padding: 24px 18px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.4);
+  background: var(--kraft-light);
+  position: relative;
 }
 .info .info-date-big {
-  font-family: 'Nanum Myeongjo', serif;
-  font-size: 26px;
-  letter-spacing: 0.15em;
-  margin-bottom: 8px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+  color: var(--ink);
 }
 .info .info-date-sub {
+  font-family: 'Black Han Sans', serif;
   color: var(--ink-soft);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   font-size: 14px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
 }
 .info .info-venue {
-  font-size: 17px;
-  letter-spacing: 0.1em;
-  margin-top: 12px;
+  font-family: 'Black Han Sans', 'Nanum Myeongjo', serif;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  margin-top: 10px;
 }
 .info .info-venue-detail {
   color: var(--ink-soft);
-  font-size: 14px;
+  font-size: 13.5px;
   margin-top: 4px;
 }
 .info .info-address {
-  color: var(--ink-soft);
-  font-size: 13.5px;
-  margin-top: 12px;
+  color: var(--ink-mute);
+  font-size: 12.5px;
+  margin-top: 10px;
+  line-height: 1.6;
 }
 
 .calendar {
-  margin: 28px auto 0;
+  margin: 22px auto 0;
   max-width: 320px;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid var(--line);
-  padding: 16px 12px 18px;
+  background: var(--kraft-light);
+  border: 1.5px solid var(--ink);
+  padding: 14px 12px 16px;
 }
 .calendar .cal-head {
   text-align: center;
-  font-family: 'Nanum Myeongjo', serif;
-  letter-spacing: 0.15em;
-  font-size: 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.2em;
+  font-size: 16px;
   margin-bottom: 10px;
+  color: var(--ink);
 }
 .calendar table {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
   font-size: 13px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.04em;
 }
 .calendar th {
   font-weight: 400;
-  color: var(--ink-soft);
+  color: var(--ink-mute);
   padding-bottom: 6px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--ink);
+  font-size: 12px;
+  letter-spacing: 0.15em;
 }
 .calendar th:first-child { color: var(--accent-red); }
-.calendar td {
-  padding: 6px 0;
-  color: var(--ink);
-}
-.calendar td.muted { color: #c2b8a0; }
+.calendar td { padding: 6px 0; color: var(--ink); }
+.calendar td.muted { color: var(--line-soft); }
 .calendar td.sun { color: var(--accent-red); }
 .calendar td.today {
-  background: var(--accent-red);
-  color: #fff;
+  background: var(--ink);
+  color: var(--kraft-light);
   border-radius: 50%;
   font-weight: 700;
 }
 
-/* ---------- MAP ---------- */
+.dday {
+  text-align: center;
+  margin-top: 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.15em;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.dday .dday-num { color: var(--accent-red); font-weight: 700; }
+
+/* ====================================================
+   MAP
+   ==================================================== */
 .map .map-buttons {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 20px;
+  gap: 8px;
+  margin-top: 18px;
 }
 .map .map-buttons a {
   text-align: center;
-  padding: 12px 8px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.5);
+  padding: 12px 6px;
+  border: 1.5px solid var(--ink);
+  background: var(--kraft-light);
   color: var(--ink);
   text-decoration: none;
   font-size: 13px;
-  letter-spacing: 0.05em;
-  transition: all 0.15s;
+  font-family: 'Black Han Sans', sans-serif;
+  letter-spacing: 0.08em;
 }
-.map .map-buttons a:active {
-  background: var(--paper-deep);
+.map .map-buttons a:active { background: var(--kraft-deep); }
+
+.map-info-list {
+  margin-top: 18px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.85;
 }
+.map-info-list li { padding-left: 14px; position: relative; list-style: none; }
+.map-info-list li::before {
+  content: '·';
+  position: absolute;
+  left: 2px;
+  color: var(--accent-red);
+  font-weight: 700;
+}
+.map-info-list { padding: 0; }
 
 .map-embed {
-  margin-top: 18px;
-  border: 1px solid var(--line);
+  margin-top: 16px;
+  border: 1.5px solid var(--ink);
   aspect-ratio: 4 / 3;
-  background: var(--paper-deep);
+  background: var(--kraft-light);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--ink-soft);
-  font-size: 13px;
+  color: var(--ink-mute);
+  font-size: 12.5px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.2em;
   background-image:
-    linear-gradient(135deg, transparent 49%, var(--line) 49%, var(--line) 51%, transparent 51%),
-    linear-gradient(45deg, transparent 49%, var(--line) 49%, var(--line) 51%, transparent 51%);
-  background-size: 20px 20px;
+    linear-gradient(135deg, transparent 49%, var(--line-soft) 49%, var(--line-soft) 51%, transparent 51%),
+    linear-gradient(45deg, transparent 49%, var(--line-soft) 49%, var(--line-soft) 51%, transparent 51%);
+  background-size: 22px 22px;
 }
 
-/* ---------- GALLERY ---------- */
+/* ====================================================
+   GALLERY
+   ==================================================== */
 .gallery .swiper {
-  border: 1px solid var(--line);
-  background: var(--paper-deep);
+  border: 1.5px solid var(--ink);
+  background: var(--kraft-light);
 }
 .gallery .swiper-slide {
   aspect-ratio: 4 / 5;
-  background: var(--paper-deep);
+  background: var(--kraft-light);
 }
 .gallery .swiper-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.gallery .swiper-pagination-bullet-active {
-  background: var(--accent-red);
-}
+.gallery .swiper-pagination-bullet { background: var(--ink); opacity: 0.4; }
+.gallery .swiper-pagination-bullet-active { background: var(--accent-red); opacity: 1; }
 .gallery .swiper-button-prev,
-.gallery .swiper-button-next {
-  color: #fff;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
-}
+.gallery .swiper-button-next { color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
 .gallery .swiper-button-prev::after,
-.gallery .swiper-button-next::after {
-  font-size: 22px;
-}
+.gallery .swiper-button-next::after { font-size: 20px; }
 .gallery .gallery-caption {
   text-align: center;
-  font-size: 12.5px;
-  color: var(--ink-soft);
-  margin-top: 12px;
-  letter-spacing: 0.05em;
+  font-size: 12px;
+  color: var(--ink-mute);
+  margin-top: 10px;
+  letter-spacing: 0.2em;
+  font-family: 'Bebas Neue', sans-serif;
 }
 
-/* ---------- ACCOUNT ---------- */
+/* ====================================================
+   ACCOUNT
+   ==================================================== */
 .account .account-intro {
   text-align: center;
-  font-size: 14.5px;
+  font-size: 14px;
   color: var(--ink-soft);
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   white-space: pre-line;
   line-height: 1.9;
+  font-family: 'Gowun Batang', serif;
 }
 
 .account .acc-toggle {
   width: 100%;
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid var(--line);
-  padding: 14px 18px;
+  background: var(--kraft-light);
+  border: 1.5px solid var(--ink);
+  padding: 13px 18px;
   text-align: left;
-  font-size: 15px;
-  letter-spacing: 0.05em;
+  font-size: 14.5px;
+  font-family: 'Black Han Sans', serif;
+  letter-spacing: 0.06em;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: var(--ink);
 }
-.account .acc-toggle .arrow {
-  color: var(--ink-soft);
-  transition: transform 0.2s;
-}
-.account .acc-toggle.open .arrow {
-  transform: rotate(180deg);
-}
+.account .acc-toggle .arrow { color: var(--ink); transition: transform 0.2s; }
+.account .acc-toggle.open .arrow { transform: rotate(180deg); }
 
 .account .acc-list {
-  background: var(--paper-deep);
-  border: 1px solid var(--line);
+  background: var(--kraft-deep);
+  border: 1.5px solid var(--ink);
   border-top: none;
   margin-top: -10px;
   margin-bottom: 10px;
@@ -382,70 +538,68 @@ section:last-child {
   align-items: center;
   gap: 8px;
   padding: 12px 0;
-  border-bottom: 1px dashed var(--line);
+  border-bottom: 1px dashed var(--ink);
   font-size: 14px;
 }
 .account .acc-row:last-child { border-bottom: none; }
-.account .acc-row .meta {
-  color: var(--ink-soft);
-  font-size: 12.5px;
-}
+.account .acc-row .meta { color: var(--ink-soft); font-size: 12px; letter-spacing: 0.05em; }
 .account .acc-row .num {
   font-weight: 700;
-  letter-spacing: 0.04em;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.06em;
   margin-top: 2px;
+  font-size: 15px;
 }
 .account .copy-btn {
-  background: var(--accent-red);
-  color: #fff;
+  background: var(--ink);
+  color: var(--kraft-light);
   border: none;
   padding: 8px 14px;
-  font-size: 12.5px;
-  letter-spacing: 0.05em;
-  border-radius: 2px;
+  font-size: 12px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.15em;
 }
-.account .copy-btn.copied {
-  background: var(--accent-blue);
-}
+.account .copy-btn.copied { background: var(--accent-red); }
 
-/* ---------- FOOTER ---------- */
+/* ====================================================
+   FOOTER
+   ==================================================== */
 .footer {
   text-align: center;
-  padding: 40px 28px;
-  background: var(--paper-deep);
-  font-size: 12px;
+  padding: 32px 28px 40px;
+  font-size: 11.5px;
   color: var(--ink-soft);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.25em;
+  font-family: 'Bebas Neue', sans-serif;
 }
-.footer .share {
-  margin-bottom: 14px;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
+.footer .share { margin-bottom: 16px; display: flex; gap: 10px; justify-content: center; }
 .footer .share button {
-  background: transparent;
-  border: 1px solid var(--line);
-  padding: 8px 14px;
+  background: var(--ink);
+  border: none;
+  padding: 11px 22px;
   font-size: 12px;
-  color: var(--ink);
-  letter-spacing: 0.05em;
+  color: var(--kraft-light);
+  letter-spacing: 0.2em;
+  font-family: 'Bebas Neue', sans-serif;
 }
 
-/* ---------- TOAST ---------- */
+/* ====================================================
+   TOAST
+   ==================================================== */
 .toast {
   position: fixed;
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(44, 40, 38, 0.92);
-  color: #fff;
+  background: var(--ink);
+  color: var(--kraft-light);
   padding: 12px 22px;
   border-radius: 24px;
-  font-size: 13.5px;
-  letter-spacing: 0.05em;
+  font-size: 13px;
+  letter-spacing: 0.08em;
   z-index: 50;
   animation: toastIn 0.2s ease-out;
+  font-family: 'Gowun Batang', serif;
 }
 @keyframes toastIn {
   from { opacity: 0; transform: translate(-50%, 10px); }
