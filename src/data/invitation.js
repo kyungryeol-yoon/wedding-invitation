@@ -24,13 +24,13 @@ export const invitation = {
     displayDate: '2026. 09. 13. SUNDAY · 12:00',
     displayDateKo: '2026년 9월 13일 일요일 낮 12시',
     venueName: '롯데월드 전통혼례',
-    venueDetail: 'B1F · 잠실역 4번 출구',
-    address: '서울특별시 송파구 올림픽로 240 롯데월드 B1F',
+    venueDetail: '롯데월드 어드벤처 3F · 민속박물관 내',
+    address: '서울 송파구 올림픽로 240 롯데월드 어드벤처 3F',
     lat: 37.5111,
     lng: 127.0982,
-    naverMapUrl: 'https://map.naver.com/p/search/%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%20%EC%A0%84%ED%86%B5%ED%98%BC%EB%A1%80',
-    kakaoMapUrl: 'https://map.kakao.com/?q=%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%20%EC%A0%84%ED%86%B5%ED%98%BC%EB%A1%80',
-    tmapUrl: 'https://tmap.life/route?goalname=%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C',
+    naverMapUrl: 'https://map.naver.com/p/search/%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%20%EB%AF%BC%EC%86%8D%EB%B0%95%EB%AC%BC%EA%B4%80',
+    kakaoMapUrl: 'https://map.kakao.com/?q=%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%20%EB%AF%BC%EC%86%8D%EB%B0%95%EB%AC%BC%EA%B4%80',
+    tmapUrl: 'https://tmap.life/route?goalname=%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%20%EC%96%B4%EB%93%9C%EB%B2%A4%EC%B2%98',
   },
 
   greeting: {
