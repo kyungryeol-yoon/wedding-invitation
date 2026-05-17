@@ -60,16 +60,59 @@ function Calendar({ dateISO }) {
   )
 }
 
-function useDday(dateISO) {
+function getDday(dateISO) {
   const target = new Date(dateISO)
   const now = new Date()
   const ms = target.getTime() - now.setHours(0, 0, 0, 0)
   return Math.ceil(ms / (1000 * 60 * 60 * 24))
 }
 
+function DdayBlock() {
+  const { wedding, groom, bride } = invitation
+  const dday = getDday(wedding.dateISO)
+
+  const target = new Date(wedding.dateISO)
+  const yyyy = target.getFullYear()
+  const mm = String(target.getMonth() + 1).padStart(2, '0')
+  const dd = String(target.getDate()).padStart(2, '0')
+  const weekdayKo = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'][target.getDay()]
+
+  let message
+  if (dday > 0) {
+    message = (
+      <>
+        {groom.name} <span className="heart">♥</span> {bride.name} 결혼식이{' '}
+        <span className="dday-num">{dday}</span>일 남았습니다.
+      </>
+    )
+  } else if (dday === 0) {
+    message = (
+      <>
+        {groom.name} <span className="heart">♥</span> {bride.name} 결혼식이{' '}
+        <span className="dday-num">오늘</span>입니다.
+      </>
+    )
+  } else {
+    message = (
+      <>
+        {groom.name} <span className="heart">♥</span> {bride.name} 결혼식이 잘
+        끝났습니다.
+      </>
+    )
+  }
+
+  return (
+    <div className="dday-block">
+      <div className="dday-date">
+        {yyyy}.{mm}.{dd} {weekdayKo}.
+      </div>
+      <div className="dday-message">{message}</div>
+    </div>
+  )
+}
+
 export default function EventInfo() {
   const { wedding } = invitation
-  const dday = useDday(wedding.dateISO)
 
   return (
     <section className="info">
@@ -87,16 +130,7 @@ export default function EventInfo() {
 
       <Calendar dateISO={wedding.dateISO} />
 
-      {dday > 0 && (
-        <div className="dday">
-          THE WEDDING DAY  <span className="dday-num">D-{dday}</span>
-        </div>
-      )}
-      {dday === 0 && (
-        <div className="dday">
-          <span className="dday-num">D - DAY</span>
-        </div>
-      )}
+      <DdayBlock />
     </section>
   )
 }
