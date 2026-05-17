@@ -1,4 +1,5 @@
 import { invitation } from '../data/invitation'
+import NaverMap from './NaverMap'
 
 export default function MapSection() {
   const { wedding } = invitation
@@ -8,7 +9,7 @@ export default function MapSection() {
       <div className="section-eyebrow">LOCATION</div>
       <h2 className="section-title">오시는 길</h2>
 
-      <div className="map-embed">SUBWAY · LINE 2 · 8 · JAMSIL · EXIT 4</div>
+      <NaverMap />
 
       <div className="map-buttons">
         <a href={wedding.naverMapUrl} target="_blank" rel="noreferrer">
