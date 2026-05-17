@@ -33,17 +33,25 @@ npm run preview  # 빌드 결과 미리보기
 2. `public/gallery/hero.jpg` 로 업로드 (깃허브 웹 UI에서 드래그&드롭 가능)
 3. 끝. 파일만 같은 이름이면 자동 적용.
 
-### 갤러리 사진
-1. `public/gallery/` 에 사진 파일들을 업로드 (예: `01.jpg`, `02.jpg` …)
-2. `src/data/invitation.js` 의 `gallery` 배열 경로를 그 파일들로 수정
+### 갤러리 사진 (자동 인식 — 파일만 떨어뜨리면 끝)
+1. **`src/assets/gallery/`** 폴더에 사진을 업로드합니다.
+2. 끝. 파일명 순으로 자동 정렬되어 갤러리에 표시됩니다.
 
-```js
-gallery: [
-  '/wedding-invitation/gallery/01.jpg',
-  '/wedding-invitation/gallery/02.jpg',
-  // ...
-],
 ```
+src/assets/gallery/
+  01.jpg
+  02.jpg
+  03.jpg
+  ...
+```
+
+> - 순서 제어가 필요하면 `01.jpg`, `02.jpg` 처럼 번호 prefix 추천 (앞에 0 붙여야 10장 넘을 때도 안 꼬임)
+> - 어떤 파일명이든 OK (`first.jpg`, `proposal.jpg` 등도 가능)
+> - 지원 포맷: `jpg`, `jpeg`, `png`, `webp`, `svg`
+> - 권장 압축: 가로 1600~2000px · JPG 품질 78~82% · 1장당 300~700KB
+
+수동으로 경로 지정하고 싶다면 `src/data/invitation.js` 의 `gallery` 배열에 경로를 채우면
+자동 인식이 무시되고 그 경로들만 사용됩니다.
 
 ## 🎨 전통 일러스트(구름·가마·말) 교체
 
@@ -63,16 +71,18 @@ gallery: [
 
 ```
 public/
-  gallery/          # 메인/갤러리 사진 (jpg, png)
-    hero.jpg
-    01.jpg, 02.jpg ...
-  ornaments/        # 전통 일러스트 (png, svg)
+  gallery/
+    hero.jpg          # 메인 사진 (단일 파일)
+  ornaments/          # 전통 일러스트 (png 권장, svg 폴백)
     cloud-1.png, cloud-2.png, cloud-3.png
     palanquin.png
     horse-rider.png
   favicon.svg
 
 src/
+  assets/
+    gallery/          # 갤러리 사진 (자동 인식 — 파일만 떨어뜨리면 끝)
+      01.jpg, 02.jpg, 03.jpg ...
   App.jsx                    # 전체 페이지 구성
   data/invitation.js         # 청첩장 데이터 (여기만 수정)
   components/
