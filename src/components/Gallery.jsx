@@ -7,10 +7,9 @@ import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
 import 'swiper/css/free-mode'
 import { invitation } from '../data/invitation'
+import Lightbox from './Lightbox'
 
 // src/assets/gallery/ 폴더 안의 모든 사진을 자동으로 가져옵니다.
-// 파일을 폴더에 넣고 커밋만 하면 갤러리에 자동으로 노출됩니다.
-// 노출 순서는 파일명 알파벳/숫자 순 (01.jpg, 02.jpg, 03.jpg ...)
 const galleryModules = import.meta.glob(
   '../assets/gallery/*.{jpg,JPG,jpeg,JPEG,png,PNG,webp,WEBP,svg,SVG}',
   { eager: true, import: 'default' },
@@ -20,12 +19,12 @@ const autoGallery = Object.entries(galleryModules)
   .map(([, url]) => url)
 
 export default function Gallery() {
-  // invitation.js 의 gallery 배열이 비어있지 않으면 그것을 우선 사용
   const gallery =
     invitation.gallery && invitation.gallery.length > 0
       ? invitation.gallery
       : autoGallery
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
+  const [lightboxIdx, setLightboxIdx] = useState(null)
 
   if (!gallery || gallery.length === 0) return null
 
@@ -49,7 +48,14 @@ export default function Gallery() {
       >
         {gallery.map((src, i) => (
           <SwiperSlide key={i}>
-            <img src={src} alt={`gallery-${i + 1}`} loading="lazy" />
+            <button
+              type="button"
+              className="gallery-slide-btn"
+              onClick={() => setLightboxIdx(i)}
+              aria-label={`사진 ${i + 1} 확대 보기`}
+            >
+              <img src={src} alt={`gallery-${i + 1}`} loading="lazy" />
+            </button>
           </SwiperSlide>
         ))}
       </Swiper>
@@ -70,7 +76,15 @@ export default function Gallery() {
         ))}
       </Swiper>
 
-      <div className="gallery-caption">← SWIPE · TAP THUMBNAIL →</div>
+      <div className="gallery-caption">TAP TO ZOOM · SWIPE TO BROWSE</div>
+
+      {lightboxIdx !== null && (
+        <Lightbox
+          images={gallery}
+          initialIndex={lightboxIdx}
+          onClose={() => setLightboxIdx(null)}
+        />
+      )}
     </section>
   )
 }
