@@ -576,6 +576,17 @@ section + section .punch-right {
   background-size: 22px 22px;
 }
 
+/* 네이버지도 실제 임베드 */
+.naver-map-wrap {
+  margin-top: 16px;
+  border: 1px solid var(--line-soft);
+  background: var(--paper-soft);
+}
+.naver-map {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
 /* ====================================================
    GALLERY
    ==================================================== */

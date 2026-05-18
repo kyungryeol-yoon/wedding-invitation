@@ -135,6 +135,45 @@ export const effectsConfig = {
 | 모든 구름이 한 방향 | `rightwardRatio` 를 1 또는 0 |
 | 잠시 끄기 | `enabled: false` |
 
+## 🗺️ 네이버 지도 연동 (API 키 설정)
+
+`MapSection` 에 실제 네이버 지도를 임베드하려면 **Naver Cloud Platform** 에서
+키를 발급받아야 합니다. 키는 도메인 제한으로 보호되므로 노출돼도 다른 사이트에서
+도용할 수 없습니다.
+
+### 1) 키 발급
+1. https://console.ncloud.com/naver-service/application 접속
+2. `AI·NAVER API → Maps` → **Application 등록**
+3. 서비스 선택: **Web Dynamic Map** (체크)
+4. **서비스 환경 등록 → Web 서비스 URL** 에 아래를 모두 추가
+   ```
+   https://<github-username>.github.io
+   http://localhost:5173
+   ```
+5. 등록 완료 후 발급된 **Client ID** (=Key ID) 복사
+
+### 2) 로컬 개발용
+```bash
+cp .env.example .env.local
+# .env.local 을 열어 VITE_NAVER_MAP_CLIENT_ID 값 채우기
+```
+`.env.local` 은 git 에 커밋되지 않습니다 (`*.local` 패턴).
+
+### 3) 배포(GitHub Pages)용
+GitHub 저장소 → **Settings → Secrets and variables → Actions → New repository secret**
+- Name: `VITE_NAVER_MAP_CLIENT_ID`
+- Value: (발급받은 키)
+
+배포 워크플로우(`.github/workflows/deploy.yml`)가 빌드 시점에 이 값을 환경변수로
+주입해서 정적 자산에 포함시킵니다.
+
+> **키가 노출돼도 괜찮나요?** Naver 지도 JS API 는 키가 브라우저에 들어가는 게 정상이며,
+> 보호의 핵심은 "도메인 제한" 입니다. 위 1)단계에서 등록한 URL 에서만 키가 작동하므로
+> 다른 사이트에서 같은 키를 써먹어도 거부됩니다.
+
+키가 비어있으면 지도 자리에 `NAVER MAP · CLIENT KEY NOT CONFIGURED` 안내가 표시되며,
+청첩장의 다른 기능은 정상 동작합니다.
+
 ## 🎨 컬러 팔레트
 
 `src/index.css` 의 `:root` 변수에서 변경 가능합니다.
