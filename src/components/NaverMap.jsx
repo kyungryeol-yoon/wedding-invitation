@@ -61,7 +61,7 @@ export default function NaverMap() {
 
         const infoWindow = new naver.maps.InfoWindow({
           content: `
-            <div style="padding: 10px 14px; font-family: 'Gowun Batang','Apple SD Gothic Neo',serif; line-height: 1.5; min-width: 180px;">
+            <div style="padding: 10px 14px; font-family: 'Pretendard','Apple SD Gothic Neo',sans-serif; line-height: 1.5; min-width: 180px;">
               <div style="color:#b8332a; font-size:11px; letter-spacing:0.18em; margin-bottom:4px; font-family:'Inter',sans-serif;">LOTTE WORLD WEDDING</div>
               <div style="color:#2c2620; font-weight:700; font-size:14px;">${wedding.venueName}</div>
               <div style="color:#5c534a; font-size:12px; margin-top:2px;">${wedding.venueDetail}</div>
