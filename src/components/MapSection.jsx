@@ -1,6 +1,30 @@
 import { invitation } from '../data/invitation'
 import NaverMap from './NaverMap'
 
+function NaverIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+      <rect width="24" height="24" rx="4" fill="#03C75A" />
+      <path
+        d="M9 6.5 H12 L15 12.6 V6.5 H17 V17.5 H14 L11 11.4 V17.5 H9 Z"
+        fill="#ffffff"
+      />
+    </svg>
+  )
+}
+
+function KakaoIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+      <rect width="24" height="24" rx="4" fill="#FEE500" />
+      <path
+        d="M12 6.4 C7.6 6.4 4 9.1 4 12.5 C4 14.7 5.4 16.6 7.5 17.7 L6.7 20.7 C6.6 21 7 21.2 7.2 21.1 L10.8 18.6 C11.2 18.6 11.6 18.7 12 18.7 C16.4 18.7 20 16 20 12.5 C20 9.1 16.4 6.4 12 6.4 Z"
+        fill="#3A1D1D"
+      />
+    </svg>
+  )
+}
+
 export default function MapSection() {
   const { wedding } = invitation
   return (
@@ -12,14 +36,25 @@ export default function MapSection() {
       <NaverMap />
 
       <div className="map-buttons">
-        <a href={wedding.naverMapUrl} target="_blank" rel="noreferrer">
-          NAVER
+        <a
+          href={wedding.naverMapUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="brand-btn brand-naver"
+          aria-label="네이버 지도에서 보기"
+        >
+          <NaverIcon />
+          <span>네이버 지도</span>
         </a>
-        <a href={wedding.kakaoMapUrl} target="_blank" rel="noreferrer">
-          KAKAO
-        </a>
-        <a href={wedding.tmapUrl} target="_blank" rel="noreferrer">
-          T MAP
+        <a
+          href={wedding.kakaoMapUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="brand-btn brand-kakao"
+          aria-label="카카오맵에서 보기"
+        >
+          <KakaoIcon />
+          <span>카카오맵</span>
         </a>
       </div>
 
