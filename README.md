@@ -135,6 +135,28 @@ export const effectsConfig = {
 | 모든 구름이 한 방향 | `rightwardRatio` 를 1 또는 0 |
 | 잠시 끄기 | `enabled: false` |
 
+## 🎎 가마 + 말 행렬 (Procession) 사이즈 조정
+
+Hero 섹션 하단의 가마/말 일러스트 크기도 `src/config/effects.js` 한 곳에서 조절합니다.
+
+```js
+procession: {
+  enabled: true,           // 켜기/끄기
+  palanquinWidth: 130,     // 가마(px, 최대 너비)
+  horseRiderWidth: 110,    // 말 탄 신랑(px, 최대 너비)
+  gap: 18,                 // 두 이미지 사이 간격(px)
+  opacity: 0.78,           // 전체 투명도
+}
+```
+
+| 원하는 변화 | 어떻게 |
+| --- | --- |
+| 말 이미지를 더 작게 | `horseRiderWidth` 110 → 90 |
+| 가마를 더 작게 | `palanquinWidth` 130 → 110 |
+| 둘 다 더 진하게 | `opacity` 0.78 → 0.9 |
+| 두 이미지를 멀리 떨어뜨림 | `gap` 18 → 28 |
+| 행렬 자체 숨기기 | `enabled: false` |
+
 ## 🗺️ 네이버 지도 연동 (API 키 설정)
 
 `MapSection` 에 실제 네이버 지도를 임베드하려면 **Naver Cloud Platform** 에서
