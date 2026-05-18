@@ -21,7 +21,7 @@ html, body {
   padding: 0;
   background: var(--outside);
   color: var(--ink);
-  font-family: 'Gowun Batang', 'Nanum Myeongjo', 'Apple SD Gothic Neo', serif;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 16px;
   line-height: 1.75;
@@ -158,13 +158,13 @@ section + section .punch-right {
   text-transform: uppercase;
 }
 .section-title {
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Noto Serif KR', serif;
   font-size: 20px;
   text-align: center;
   margin: 0 0 28px;
   color: var(--ink);
   letter-spacing: 0.06em;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 /* 구름/회문 디바이더 */
@@ -215,11 +215,11 @@ section + section .punch-right {
 }
 
 .hero-meta .names {
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Noto Serif KR', serif;
   font-size: 26px;
   letter-spacing: 0.18em;
   color: var(--ink);
-  font-weight: 400;
+  font-weight: 500;
   margin: 0;
 }
 .hero-meta .names .amp {
@@ -242,7 +242,7 @@ section + section .punch-right {
 
 .hero-meta .venue {
   margin-top: 6px;
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Noto Serif KR', serif;
   font-size: 14px;
   letter-spacing: 0.1em;
   color: var(--ink-soft);
@@ -317,7 +317,7 @@ section + section .punch-right {
   line-height: 2.1;
   margin: 0 auto 22px;
   max-width: 340px;
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
 }
 
 .parents-block {
@@ -334,7 +334,7 @@ section + section .punch-right {
   color: var(--ink-mute);
   font-size: 12px;
   letter-spacing: 0.08em;
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
 }
 .parents-block .of {
   color: var(--accent);
@@ -342,7 +342,7 @@ section + section .punch-right {
   font-family: 'Inter', sans-serif;
 }
 .parents-block .person-name {
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Noto Serif KR', serif;
   font-weight: 700;
   letter-spacing: 0.08em;
   font-size: 15px;
@@ -374,7 +374,7 @@ section + section .punch-right {
   text-transform: uppercase;
 }
 .info .info-venue {
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Noto Serif KR', serif;
   font-size: 17px;
   letter-spacing: 0.1em;
   margin-top: 10px;
@@ -383,14 +383,14 @@ section + section .punch-right {
   color: var(--ink-soft);
   font-size: 13px;
   margin-top: 4px;
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
 }
 .info .info-address {
   color: var(--ink-mute);
   font-size: 12px;
   margin-top: 10px;
   line-height: 1.7;
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
 }
 
 .calendar {
@@ -464,7 +464,7 @@ section + section .punch-right {
   letter-spacing: 0;
 }
 .day-time {
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
   font-size: 10px;
   color: var(--accent);
   white-space: nowrap;
@@ -481,14 +481,14 @@ section + section .punch-right {
   border-top: 1px solid var(--line-hair);
 }
 .dday-date {
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
   font-size: 13px;
   color: var(--ink-mute);
   letter-spacing: 0.04em;
   margin-bottom: 12px;
 }
 .dday-message {
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
   font-size: 14px;
   color: var(--ink);
   letter-spacing: 0.02em;
@@ -529,7 +529,7 @@ section + section .punch-right {
   color: var(--ink);
   text-decoration: none;
   font-size: 13.5px;
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Noto Serif KR', serif;
   letter-spacing: 0.05em;
   transition: background 0.15s;
 }
@@ -541,7 +541,7 @@ section + section .punch-right {
   margin-top: 22px;
   border: 1px solid var(--line-soft);
   background: var(--paper-soft);
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
 }
 .map-info-row {
   display: grid;
@@ -683,7 +683,7 @@ section + section .punch-right {
   margin-bottom: 18px;
   white-space: pre-line;
   line-height: 1.95;
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
 }
 
 .account .acc-toggle {
@@ -693,7 +693,7 @@ section + section .punch-right {
   padding: 14px 18px;
   text-align: left;
   font-size: 14px;
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Noto Serif KR', serif;
   letter-spacing: 0.06em;
   margin-bottom: 10px;
   display: flex;
@@ -726,7 +726,7 @@ section + section .punch-right {
   color: var(--ink-mute);
   font-size: 11.5px;
   letter-spacing: 0.05em;
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
 }
 .account .acc-row .num {
   font-weight: 500;
@@ -787,7 +787,7 @@ section + section .punch-right {
   letter-spacing: 0.08em;
   z-index: 50;
   animation: toastIn 0.2s ease-out;
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
 }
 @keyframes toastIn {
   from { opacity: 0; transform: translate(-50%, 10px); }
