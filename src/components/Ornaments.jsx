@@ -1,11 +1,24 @@
 import OrnamentImg from './OrnamentImg'
 import { invitation } from '../data/invitation'
+import { effectsConfig } from '../config/effects'
 
 // 가마 + 말 탄 신랑 행렬 — 사용자 업로드 이미지(없으면 SVG)로 렌더
 export function Procession({ className }) {
+  const cfg = effectsConfig.procession
+  if (cfg && cfg.enabled === false) return null
+
   const { palanquin, horseRider } = invitation.ornaments
+  const style = cfg
+    ? {
+        '--proc-palanquin-w': `${cfg.palanquinWidth}px`,
+        '--proc-horse-w': `${cfg.horseRiderWidth}px`,
+        '--proc-gap': `${cfg.gap}px`,
+        '--proc-opacity': cfg.opacity,
+      }
+    : undefined
+
   return (
-    <div className={`procession-imgs ${className || ''}`}>
+    <div className={`procession-imgs ${className || ''}`} style={style}>
       <OrnamentImg asset={palanquin} alt="전통 가마 행렬" className="proc-palanquin" />
       <OrnamentImg asset={horseRider} alt="말 탄 신랑" className="proc-horse" />
     </div>

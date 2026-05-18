@@ -267,19 +267,27 @@ section + section .punch-right {
   margin: 26px auto 8px;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  gap: 18px;
-  opacity: 0.78;
 }
 .procession-imgs {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 18px;
+  gap: var(--proc-gap, 18px);
+  opacity: var(--proc-opacity, 0.78);
   width: 100%;
 }
-.procession-imgs .proc-palanquin { width: 38%; max-width: 130px; height: auto; }
-.procession-imgs .proc-horse     { width: 44%; max-width: 150px; height: auto; }
+.procession-imgs .proc-palanquin {
+  max-width: var(--proc-palanquin-w, 130px);
+  width: 100%;
+  height: auto;
+  flex: 0 1 auto;
+}
+.procession-imgs .proc-horse {
+  max-width: var(--proc-horse-w, 110px);
+  width: 100%;
+  height: auto;
+  flex: 0 1 auto;
+}
 
 .hero-meta .brand {
   font-family: 'Cormorant Garamond', serif;
