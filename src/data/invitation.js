@@ -15,7 +15,7 @@ export const invitation = {
     mother: '차옥순',
     role: '딸',
     accounts: [
-      { bank: '국민은행', number: '000-00-0000-000', holder: '김호정' },
+      { bank: '카카오뱅크', number: '3333-08-0351406', holder: '김호정' },
     ],
   },
 
