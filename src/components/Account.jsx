@@ -74,7 +74,7 @@ export default function Account({ onCopy }) {
   return (
     <section className="account">
       <span className="punch-right" />
-      <div className="section-eyebrow">CONGRATULATIONS</div>
+      <div className="section-eyebrow">祝儀</div>
       <h2 className="section-title">마음 전하실 곳</h2>
 
       <p className="account-intro">

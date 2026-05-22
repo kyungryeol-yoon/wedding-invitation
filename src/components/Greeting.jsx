@@ -1,5 +1,6 @@
 import { invitation } from '../data/invitation'
 import { Greek } from './Ornaments'
+import Seal from './Seal'
 
 function ParentRow({ parents, role, name }) {
   const parentText = parents.filter(Boolean).join(' · ')
@@ -17,9 +18,11 @@ export default function Greeting() {
   return (
     <section className="greeting">
       <span className="punch-right" />
-      <div className="section-eyebrow">{greeting.eyebrow}</div>
+      <div className="section-eyebrow">邀請</div>
       <h2 className="section-title">{greeting.title}</h2>
       <p className="greeting-body">{greeting.body}</p>
+
+      <Seal text="謹邀" />
 
       <div className="cloud-divider">
         <Greek className="greek-line" />

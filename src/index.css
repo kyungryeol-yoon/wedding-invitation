@@ -148,14 +148,36 @@ section + section .punch-right {
 
 /* 섹션 헤더 공통 */
 .section-eyebrow {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.4em;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 13px;
+  letter-spacing: 0.5em;
   color: var(--accent);
   text-align: center;
   margin: 0 0 10px;
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: 600;
+  text-transform: none;
+}
+
+/* 도장(印章) 마크 */
+.seal-mark {
+  display: flex;
+  justify-content: center;
+  margin: 22px auto 6px;
+}
+.seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: var(--paper-soft);
+  padding: 8px 10px;
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 1;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 .section-title {
   font-family: 'Noto Serif KR', serif;

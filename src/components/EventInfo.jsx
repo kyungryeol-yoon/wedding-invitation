@@ -142,7 +142,7 @@ export default function EventInfo() {
   return (
     <section className="info">
       <span className="punch-right" />
-      <div className="section-eyebrow">WHEN &amp; WHERE</div>
+      <div className="section-eyebrow">禮式</div>
       <h2 className="section-title">예식 안내</h2>
 
       <div className="info-card">
