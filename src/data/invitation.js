@@ -57,7 +57,6 @@ export const invitation = {
   heroTagline: 'You & Me, Always',
 
   // 종이 청첩장 컨셉
-  brand: 'YK ♥ HJ',
   subBrand: 'LOTTE WORLD · TRADITIONAL WEDDING',
 
   // 전통 일러스트 경로

@@ -3,7 +3,7 @@ import { invitation } from '../data/invitation'
 import { Greek, Procession } from './Ornaments'
 
 export default function Hero() {
-  const { groom, bride, wedding, brand, subBrand, heroImage, heroImageFallback } = invitation
+  const { groom, bride, wedding, subBrand, heroImage, heroImageFallback } = invitation
   const [src, setSrc] = useState(heroImage)
 
   return (
@@ -40,7 +40,6 @@ export default function Hero() {
           <Procession />
         </div>
 
-        <div className="brand">{brand}</div>
         <div className="sub-brand">{subBrand}</div>
       </div>
     </section>
