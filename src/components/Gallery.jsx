@@ -31,7 +31,7 @@ export default function Gallery() {
   return (
     <section className="gallery">
       <span className="punch-right" />
-      <div className="section-eyebrow">GALLERY</div>
+      <div className="section-eyebrow">寫眞</div>
       <h2 className="section-title">갤러리</h2>
 
       <Swiper

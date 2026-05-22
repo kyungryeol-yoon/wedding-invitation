@@ -30,7 +30,7 @@ export default function MapSection() {
   return (
     <section className="map">
       <span className="punch-right" />
-      <div className="section-eyebrow">LOCATION</div>
+      <div className="section-eyebrow">案內</div>
       <h2 className="section-title">오시는 길</h2>
 
       <NaverMap />
