@@ -6,7 +6,7 @@ export const invitation = {
     mother: '손명숙',
     role: '아들',
     accounts: [
-      { bank: '신한은행', number: '110-000-000000', holder: '윤경렬' },
+      { bank: '카카오뱅크', number: '3333-04-1801503', holder: '윤경렬' },
     ],
   },
   bride: {
