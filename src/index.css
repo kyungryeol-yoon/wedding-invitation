@@ -223,6 +223,7 @@ section + section .punch-right {
   aspect-ratio: 3 / 4;
   background: var(--paper-deep);
   overflow: hidden;
+  animation: heroFadeIn 0.9s ease-out both;
 }
 .hero-photo img {
   width: 100%;
@@ -234,6 +235,35 @@ section + section .punch-right {
 .hero-meta {
   text-align: center;
   padding: 32px 28px 4px;
+}
+
+/* Hero 인트로 페이드인 */
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes heroTextRise {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-meta > * {
+  animation: heroTextRise 0.7s ease-out both;
+}
+.hero-meta .names        { animation-delay: 0.35s; }
+.hero-meta .date         { animation-delay: 0.55s; }
+.hero-meta .ornament     { animation-delay: 0.70s; }
+.hero-meta .venue        { animation-delay: 0.85s; }
+.hero-meta .venue-detail { animation-delay: 0.95s; }
+.hero-meta .procession   { animation-delay: 1.15s; }
+.hero-meta .sub-brand    { animation-delay: 1.35s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo,
+  .hero-meta > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 .hero-meta .names {
