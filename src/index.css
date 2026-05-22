@@ -770,6 +770,23 @@ section + section .punch-right {
   font-family: 'Inter', sans-serif;
   text-transform: uppercase;
 }
+.footer .sig {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--ink);
+  margin-top: 4px;
+  text-transform: none;
+}
+.footer .sig-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11.5px;
+  letter-spacing: 0.25em;
+  color: var(--ink-mute);
+  margin-top: 6px;
+  text-transform: none;
+}
 
 /* ====================================================
    TOAST
