@@ -1,3 +1,13 @@
+import { invitation } from '../data/invitation'
+
+function formatDate(iso) {
+  const d = new Date(iso)
+  const yyyy = d.getFullYear()
+  const mm = String(d.getMonth() + 1).padStart(2, '0')
+  const dd = String(d.getDate()).padStart(2, '0')
+  return `${yyyy}. ${mm}. ${dd}.`
+}
+
 export default function Footer({ onShare }) {
   async function share() {
     const url = window.location.href
@@ -29,7 +39,8 @@ export default function Footer({ onShare }) {
           SHARE INVITATION
         </button>
       </div>
-      <div>H.R · WEDDING · 2026</div>
+      <div className="sig">{invitation.brand}</div>
+      <div className="sig-date">{formatDate(invitation.wedding.dateISO)}</div>
     </section>
   )
 }
