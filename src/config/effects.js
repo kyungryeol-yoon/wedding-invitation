@@ -17,11 +17,11 @@ export const effectsConfig = {
     //   - count 가 null 이면 density × 페이지수 만큼 자동
     //     (페이지가 길수록 구름이 더 많이 생겨 빈 공간 없이 채워줌)
     count: null,
-    density: 7,             // 한 화면(=100vh) 당 구름 몇 개 (1~6 권장)
+    density: 5,             // 한 화면(=100vh) 당 구름 몇 개 (1~6 권장)
 
     // 📏 세로 간격
     // verticalJitter: 균등 분포에서 ±% 만큼 흔들기 (0 = 완벽한 등간격, 50 = 자유분방)
-    verticalJitter: 55,
+    verticalJitter: 45,
 
     // 📐 구름 크기 (px) — 이 범위에서 랜덤
     sizeMin: 75,
@@ -34,7 +34,7 @@ export const effectsConfig = {
 
     // 🌊 위아래 흔들림 (px) — 둥둥 떠다니는 듯한 출렁임
     //   0 이면 일직선, 12~20 정도면 부드럽게 둥실둥실
-    swayAmount: 22,
+    swayAmount: 19,
 
     // 🌫️ 투명도 — 너무 진하면 본문 가독성이 떨어집니다 (0.04~0.15 권장)
     opacityMin: 0.05,
