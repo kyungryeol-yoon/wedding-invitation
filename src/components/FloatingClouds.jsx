@@ -29,7 +29,9 @@ function buildPlan(config, pageH, viewportH) {
       dur: rand(config.speedMin, config.speedMax),
       delay: -rand(0, config.speedMax),
       opacity: rand(config.opacityMin, config.opacityMax),
-      sway: rand(config.swayAmount * 0.4, config.swayAmount),
+      sway: rand(config.swayAmount * 0.55, config.swayAmount),
+      bobDur: rand(config.bobDurationMin, config.bobDurationMax),
+      bobDelay: -rand(0, config.bobDurationMax),
       key: pick(config.variants),
     }
   })
@@ -83,10 +85,18 @@ export default function FloatingClouds() {
             animationDuration: `${c.dur}s`,
             animationDelay: `${c.delay}s`,
             opacity: c.opacity,
-            '--sway': `${c.sway}px`,
           }}
         >
-          <OrnamentImg asset={ornaments[c.key]} alt="" />
+          <div
+            className="cloud-bob"
+            style={{
+              '--sway': `${c.sway}px`,
+              animationDuration: `${c.bobDur}s`,
+              animationDelay: `${c.bobDelay}s`,
+            }}
+          >
+            <OrnamentImg asset={ornaments[c.key]} alt="" />
+          </div>
         </div>
       ))}
     </div>
