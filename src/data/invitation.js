@@ -78,7 +78,7 @@ export const invitation = {
       fallback: '/wedding-invitation/ornaments/cloud-3.svg',
     },
     palanquin: {
-      src: '/wedding-invitation/ornaments/palanquin.png',
+      src: '/wedding-invitation/ornaments/palanquin.gif',
       fallback: '/wedding-invitation/ornaments/palanquin.svg',
     },
     horseRider: {
