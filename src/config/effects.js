@@ -17,7 +17,7 @@ export const effectsConfig = {
     //   - count 가 null 이면 density × 페이지수 만큼 자동
     //     (페이지가 길수록 구름이 더 많이 생겨 빈 공간 없이 채워줌)
     count: null,
-    density: 15,            // 한 화면(=100vh) 당 구름 몇 개 (1~30 권장)
+    density: 9,            // 한 화면(=100vh) 당 구름 몇 개 (1~30 권장)
 
     // 📏 세로 간격
     // verticalJitter: 균등 분포에서 ±% 만큼 흔들기 (0 = 완벽한 등간격, 50 = 자유분방)
