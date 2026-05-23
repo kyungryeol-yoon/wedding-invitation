@@ -17,24 +17,24 @@ export const effectsConfig = {
     //   - count 가 null 이면 density × 페이지수 만큼 자동
     //     (페이지가 길수록 구름이 더 많이 생겨 빈 공간 없이 채워줌)
     count: null,
-    density: 4,             // 한 화면(=100vh) 당 구름 몇 개 (1~6 권장)
+    density: 7,             // 한 화면(=100vh) 당 구름 몇 개 (1~6 권장)
 
     // 📏 세로 간격
     // verticalJitter: 균등 분포에서 ±% 만큼 흔들기 (0 = 완벽한 등간격, 50 = 자유분방)
-    verticalJitter: 35,
+    verticalJitter: 55,
 
     // 📐 구름 크기 (px) — 이 범위에서 랜덤
-    sizeMin: 80,
+    sizeMin: 75,
     sizeMax: 170,
 
     // 🕐 한 번 가로지르는 데 걸리는 시간 (초)
     //   값이 작을수록 빠릅니다. 너무 빠르면 산만하므로 60~120 권장
     speedMin: 75,
-    speedMax: 140,
+    speedMax: 125,
 
     // 🌊 위아래 흔들림 (px) — 둥둥 떠다니는 듯한 출렁임
     //   0 이면 일직선, 12~20 정도면 부드럽게 둥실둥실
-    swayAmount: 18,
+    swayAmount: 22,
 
     // 🌫️ 투명도 — 너무 진하면 본문 가독성이 떨어집니다 (0.04~0.15 권장)
     opacityMin: 0.05,
@@ -58,14 +58,14 @@ export const effectsConfig = {
     // 📐 각 이미지의 최대 너비 (px)
     //   - 두 이미지의 균형을 맞추고 싶다면 동일 값으로
     //   - 말 이미지가 시각적으로 크게 보인다면 horseRiderWidth 를 작게
-    palanquinWidth: 130,    // 가마(사인교)
+    palanquinWidth: 125,    // 가마(사인교)
     horseRiderWidth: 95,    // 말 탄 신랑
 
     // ↔️ 두 이미지 사이 간격 (px)
-    gap: 18,
+    gap: 19,
 
     // 🌫️ 전체 투명도 (0~1)
     //   - 1 이면 진하게, 0.6~0.8 이면 본문과 잘 어울리는 톤다운
-    opacity: 0.78,
+    opacity: 0.77,
   },
 }
