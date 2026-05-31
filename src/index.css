@@ -228,7 +228,7 @@ section + section .punch-right {
 
 .hero-photo {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 2 / 3;
   background: var(--paper-deep);
   overflow: hidden;
   animation: heroFadeIn 0.9s ease-out both;
@@ -236,7 +236,7 @@ section + section .punch-right {
 .hero-photo img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
