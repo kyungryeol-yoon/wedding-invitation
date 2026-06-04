@@ -66,6 +66,14 @@ export default function MapSection() {
           </div>
         </div>
         <div className="map-info-row">
+          <div className="map-info-label">버스</div>
+          <div className="map-info-body">
+            간선 <b>301 · 341</b> / 광역 <b>1007</b><br />
+            공항 <b>6000</b>(인천) · <b>6705</b>(김포)<br />
+            <span className="muted">잠실역.롯데월드 정류장 하차</span>
+          </div>
+        </div>
+        <div className="map-info-row">
           <div className="map-info-label">도보</div>
           <div className="map-info-body">
             잠실역 4번 출구에서 지하로 연결되어 있습니다.<br />
