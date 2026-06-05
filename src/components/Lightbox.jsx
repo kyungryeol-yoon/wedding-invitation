@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Zoom, Navigation, Pagination, A11y, Keyboard } from 'swiper/modules'
 import 'swiper/css'
@@ -25,7 +26,9 @@ export default function Lightbox({ images, initialIndex = 0, onClose }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  return (
+  // .app 에 mask 가 걸려 있어 position: fixed 가 viewport 기준이 안 되므로
+  // document.body 로 포털 렌더링해 마스크 영향에서 벗어나게 한다.
+  return createPortal(
     <div className="lightbox-overlay" role="dialog" aria-modal="true" aria-label="사진 확대 보기">
       <div className="lightbox-toolbar">
         <button
@@ -60,6 +63,7 @@ export default function Lightbox({ images, initialIndex = 0, onClose }) {
       <div className="lightbox-hint">
         손가락 두 개로 확대 · 두 번 탭해도 확대 · 좌우로 넘기기
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }

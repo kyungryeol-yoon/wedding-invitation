@@ -852,11 +852,13 @@ section + section .punch-right {
 .lightbox-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(20, 17, 14, 0.96);
+  background: #141110;
   z-index: 100;
   display: flex;
   flex-direction: column;
   animation: lightboxIn 0.15s ease-out;
+  touch-action: none;
+  overscroll-behavior: contain;
 }
 @keyframes lightboxIn {
   from { opacity: 0; }
