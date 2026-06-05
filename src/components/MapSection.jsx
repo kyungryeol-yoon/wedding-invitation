@@ -69,7 +69,7 @@ export default function MapSection() {
           <div className="map-info-label">버스</div>
           <div className="map-info-body">
             간선 <b>301 · 341</b> / 광역 <b>1007</b><br />
-            공항 <b>6705A · 6200 · N6703</b>(인천) · <b>6705</b>(김포)<br />
+            공항 <b>6705A · 6200 · N6703</b>(인천) <span className="muted">· 김포는 환승 필요</span><br />
             <span className="muted">잠실역.롯데월드 정류장 하차</span>
           </div>
         </div>
