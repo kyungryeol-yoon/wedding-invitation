@@ -86,7 +86,8 @@ export default function MapSection() {
           <div className="map-info-label">주차</div>
           <div className="map-info-body">
             롯데월드 어드벤처 주차장 이용 가능 <br />
-            <span className="muted">(혼례 이용 시 무료 2시간 제공)</span>
+            <span className="muted">주차 2시간 무료 (주차확인: 피로연회장 '주막' 카운터)</span><br />
+            <span className="muted">민속박물관 관람권 소지 시 시간당 1,000원에 연장 (박물관 입구에서 정산)</span>
           </div>
         </div>
         <div className="map-info-row">
