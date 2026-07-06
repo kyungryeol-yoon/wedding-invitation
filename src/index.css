@@ -361,7 +361,8 @@ section + section .punch-right {
 /* ====================================================
    GREETING
    ==================================================== */
-.greeting .greeting-body {
+.greeting .greeting-body,
+.guestbook .guestbook-body {
   white-space: pre-line;
   text-align: center;
   font-size: 16.5px;

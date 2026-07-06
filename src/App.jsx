@@ -4,6 +4,7 @@ import Greeting from './components/Greeting'
 import EventInfo from './components/EventInfo'
 import MapSection from './components/MapSection'
 import Gallery from './components/Gallery'
+import Guestbook from './components/Guestbook'
 import Account from './components/Account'
 import Footer from './components/Footer'
 import FloatingClouds from './components/FloatingClouds'
@@ -24,6 +25,7 @@ function App() {
       <EventInfo />
       <MapSection />
       <Gallery />
+      <Guestbook />
       <Account onCopy={showToast} />
       <Footer onShare={showToast} />
       {toast && <div className="toast">{toast}</div>}

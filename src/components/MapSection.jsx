@@ -90,6 +90,13 @@ export default function MapSection() {
           </div>
         </div>
         <div className="map-info-row">
+          <div className="map-info-label">ATM</div>
+          <div className="map-info-body">
+            <b>신한은행</b> ATM 지하 1층<br />
+            <b>KB국민은행</b> ATM 1층
+          </div>
+        </div>
+        <div className="map-info-row">
           <div className="map-info-label">참고</div>
           <div className="map-info-body muted">
             혼례 시간대(오전~정오)는 주차장과 출입 동선이 혼잡할 수 있습니다.
