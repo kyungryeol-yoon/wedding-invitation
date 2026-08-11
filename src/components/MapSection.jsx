@@ -89,7 +89,7 @@ export default function MapSection() {
         <div className="map-info-row">
           <div className="map-info-label">주차</div>
           <div className="map-info-body">
-            롯데월드 어드벤처 주차장 이용 가능 <br />
+            롯데월드 주차장 이용 가능 <br />
             <span className="muted">주차 2시간 무료 (주차확인: 피로연회장 '주막' 카운터)</span><br />
           </div>
         </div>
