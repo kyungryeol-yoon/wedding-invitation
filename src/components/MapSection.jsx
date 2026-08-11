@@ -79,7 +79,11 @@ export default function MapSection() {
             잠실역 4번 출구에서 지하로 연결되어 있습니다.<br />
             <b>롯데마트 제타플렉스</b> 방향으로 직진 →
             <b> 롯데월드 민속박물관</b> 방향으로 이동 →
-            엘리베이터로 <b>3층</b>까지 올라오시면 됩니다.
+            엘리베이터로 3층 <b>롯데월드 민속박물관 전통혼례장</b>으로 오시면 됩니다.<br />
+            <span className="muted">
+              길을 물으실 때는 &lsquo;3층&rsquo;보다 <b>&lsquo;롯데월드 민속박물관 전통혼례장&rsquo;</b>으로
+              말씀해 주시면 안내받기 쉽습니다.
+            </span>
           </div>
         </div>
         <div className="map-info-row">
