@@ -7,7 +7,7 @@ export default function Footer({ onShare }) {
       try {
         await navigator.share({
           title: '윤경렬 ♥ 김호정 결혼합니다',
-          text: '2026. 09. 13. SUN 12:00 · 롯데월드 전통혼례',
+          text: '2026. 09. 13. SUN 12:00 · 롯데월드 민속박물관 전통혼례장',
           url,
         })
       } catch {
