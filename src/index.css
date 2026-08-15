@@ -743,23 +743,20 @@ section + section .punch-right {
   color: var(--ink);
   padding-top: 3px;
 }
+/* 한 단계에 사진이 여러 장이면 걸어가는 순서대로 위에서 아래로 쌓습니다.
+   가로로 나누면 간판 글씨와 화살표가 작아져 알아볼 수 없습니다. */
 .dir-step-imgs {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 6px;
+  gap: 8px;
   margin-top: 10px;
 }
-.dir-step-imgs.count-2 { grid-template-columns: 1fr 1fr; }
 .dir-step-img {
   display: block;
   width: 100%;
   height: auto;
   border: 1px solid var(--line-soft);
   background: var(--paper-soft);
-}
-.dir-step-imgs.count-2 .dir-step-img {
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
 }
 .dir-step-sub {
   display: block;

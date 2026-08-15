@@ -34,122 +34,208 @@ export const invitation = {
   },
 
   // 오시는 길 상세 경로 (오시는 길 섹션에서 접기/펼치기)
-  // - imgs 에 사진 경로를 넣으면 단계마다 사진이 표시됩니다. (한 단계에 2장까지 나란히 표시)
-  // - imgs 를 [] 로 두면 사진 없이 글만 나옵니다. (나중에 파일만 채워 넣으면 됩니다)
-  // - 사진은 public/directions/ 에 올리고 경로는 /wedding-invitation/directions/... 로 적어주세요.
-  // - sub: 단계에 덧붙이는 보조 설명 (작은 글씨). 없으면 생략하세요.
-  // - notes: 경로 맨 아래 안내 문구들. '※' 로 시작하면 강조 표시됩니다.
-  // - alert: 경로 펼치면 맨 위에 뜨는 경고 상자. 꼭 먼저 읽어야 하는 내용만 넣으세요.
+  // 비어 있으면 '상세 경로 안내' 블록 자체가 표시되지 않습니다.
+  //
+  // 각 경로의 형태:
+  //   key   : 고유 식별자
+  //   label : 왼쪽 작은 칩. 경로끼리 구분되는 부분만 짧게.
+  //   title : 경로 제목
+  //   lead  : 제목 아래 한 줄 요약 (전체 동선)
+  //   alert : { title, body } — 펼치면 맨 위에 뜨는 경고 상자. 꼭 먼저 읽어야 할 때만.
+  //   steps : [{ text, sub?, imgs: [] }]
+  //           - sub  : 단계에 덧붙이는 보조 설명 (작은 글씨)
+  //           - imgs : 사진 경로 배열. 한 단계에 2장까지 나란히 표시.
+  //                    [] 로 두면 사진 없이 글만 나옵니다.
+  //   notes : 경로 맨 아래 안내 문구들. '※' 로 시작하면 강조 표시.
+  //
+  // 사진은 public/directions/ 에 올리고
+  // 경로는 /wedding-invitation/directions/... 로 적어주세요.
   directions: [
     {
-      key: 'walk',
-      label: '도보',
-      title: '도보(지상)으로 오시는 길',
-      lead: '잠실역 4번 출구 → 롯데월드 정문 → 신데렐라 계단 뒤쪽 엘리베이터 → 3층',
+      key: 'transit-indoor',
+      label: '실내',
+      title: '대중교통으로 오시는 길 - 실내 이동',
+      lead: '잠실역 4번 출구 방향 직진 → BUTTER 매장 앞 좌회전 → 로티로리 조형물 → 기둥 뒷편 엘리베이터 → 3층',
       steps: [
         {
-          text: '잠실역(2호선) 4번 출구로 나와서 직진하세요.',
-          imgs: ['/wedding-invitation/directions/exit4.jpg'],
+          text: '잠실역(2호선) 4번 출구 방향으로 직진하세요.',
+          imgs: ['/wedding-invitation/directions/indoor-1.jpg'],
         },
         {
-          text: '나온 방향 그대로, 롯데백화점을 지나 롯데월드 정문으로 입장합니다.',
-          imgs: ['/wedding-invitation/directions/walk-2.jpg'],
-        },
-        {
-          text: '정면의 신데렐라 계단 뒤쪽에 엘리베이터가 있습니다.',
-          imgs: ['/wedding-invitation/directions/walk-3.jpg'],
-        },
-        {
-          text: '왼쪽은 롯데백화점, 오른쪽은 롯데 하이마트입니다.',
+          text: '계속 직진하며 상가를 지나다 BUTTER 매장 앞에서 왼쪽으로 꺾어주세요.',
           imgs: [
-            '/wedding-invitation/directions/walk-4a.jpg',
-            '/wedding-invitation/directions/walk-4b.jpg',
+            '/wedding-invitation/directions/indoor-2.jpg',
+            '/wedding-invitation/directions/indoor-3.jpg',
+            '/wedding-invitation/directions/indoor-4.jpg',
           ],
         },
         {
-          text: '계단 뒤편에 있는 엘리베이터를 이용하여 3층으로 올라갑니다.',
-          imgs: ['/wedding-invitation/directions/walk-5.jpg'],
+          text: '로티로리 조형물까지 직진하세요.',
+          imgs: [
+            '/wedding-invitation/directions/indoor-5.jpg',
+            '/wedding-invitation/directions/indoor-6.jpg',
+          ],
         },
         {
-          text: '3층의 민속박물관 초입이 보이면 도착입니다.',
-          imgs: ['/wedding-invitation/directions/arrival.jpg'],
+          text: '기둥 뒷편 엘리베이터 탑승 후 3층에서 하차하세요.',
+          imgs: [
+            '/wedding-invitation/directions/indoor-7.jpg',
+            '/wedding-invitation/directions/indoor-8.jpg',
+          ],
+        },
+        {
+          text: '민속박물관 · 저자거리 입구를 지나 우측 안쪽으로 쭉 들어가면 전통혼례장이 나옵니다.',
+          imgs: [
+            '/wedding-invitation/directions/indoor-9.jpg',
+            '/wedding-invitation/directions/indoor-10.jpg',
+            '/wedding-invitation/directions/indoor-11.jpg',
+            '/wedding-invitation/directions/indoor-12.jpg',
+          ],
         },
       ],
       notes: [],
     },
     {
-      key: 'transit',
-      label: '대중교통(지하철)',
-      title: '대중교통(지하)으로 오시는 길',
-      lead: '잠실역 4번 출구 방향 직진 → 지하상가 5분 → 로티로리 광장 → 엘리베이터 → 3층',
+      key: 'transit-outdoor',
+      label: '실외',
+      title: '대중교통으로 오시는 길 - 실외 이동',
+      lead: '잠실역 4번 출구로 나가기 → 롯데월드 어드벤처 입구 → 나선형 계단 뒷편 엘리베이터 → 3층',
       steps: [
         {
-          text: '잠실역(2호선) 4번 출구 방향으로 직진합니다.',
-          imgs: ['/wedding-invitation/directions/exit4.jpg'],
+          text: '잠실역(2호선) 4번 출구를 통해 밖으로 나갑니다.',
+          imgs: ['/wedding-invitation/directions/outdoor-1.jpg'],
         },
         {
-          text: '지하상가들을 양옆으로 5분 정도 직진합니다.',
-          imgs: ['/wedding-invitation/directions/transit-2.jpg'],
+          text: '롯데월드 어드벤처 입구까지 직진하세요.',
+          imgs: ['/wedding-invitation/directions/outdoor-2.jpg'],
         },
         {
-          text: '감성 교복에서 좌회전하면 로티로리 광장이 나옵니다.',
-          imgs: ['/wedding-invitation/directions/transit-3.jpg'],
+          text: '입구로 들어와 나선형 계단 뒷편 엘리베이터 탑승 후 3층에서 하차하세요.',
+          sub: '롯데백화점과 하이마트 사이에 엘리베이터가 있습니다.',
+          imgs: [
+            '/wedding-invitation/directions/outdoor-3.jpg',
+            '/wedding-invitation/directions/outdoor-4.jpg',
+            '/wedding-invitation/directions/outdoor-5.jpg',
+            '/wedding-invitation/directions/outdoor-6.jpg',
+          ],
         },
         {
-          text: '광장 뒤편의 엘리베이터를 이용하여 3층으로 올라갑니다.',
-          imgs: ['/wedding-invitation/directions/transit-4.jpg'],
-        },
-        {
-          text: '3층의 민속박물관 초입이 보이면 도착입니다.',
-          imgs: ['/wedding-invitation/directions/arrival.jpg'],
+          text: '민속박물관 · 저자거리 입구를 지나 우측 안쪽으로 쭉 들어가면 전통혼례장이 나옵니다.',
+          imgs: [
+            '/wedding-invitation/directions/outdoor-7.jpg',
+            '/wedding-invitation/directions/outdoor-8.jpg',
+            '/wedding-invitation/directions/outdoor-9.jpg',
+            '/wedding-invitation/directions/outdoor-10.jpg',
+          ],
         },
       ],
-      notes: ['비가 오거나 더운 날에는 지하 경로가 편합니다.'],
+      notes: [],
     },
     {
-      key: 'car',
-      label: '자가용',
-      title: '차량으로 오시는 길',
-      lead: '지하주차장 M구역 주차 → 롯데마트(제타플렉스) → 3층 저자거리',
-      alert: {
-        title: '예식일은 롯데마트 휴무일입니다',
-        body: '9월 13일(둘째 일요일)은 롯데마트 제타플렉스 휴무일이라 아래 ④~⑦단계의 마트 내부 통로를 이용하실 수 없습니다. 주차하신 뒤 지하 1층 로티로리 광장으로 올라오셔서, 민속박물관 엘리베이터로 3층까지 오시면 됩니다. (‘대중교통(지하)으로 오시는 길’ ③~⑤단계와 동일)',
-      },
+      key: 'park-basement',
+      label: '지하주차장',
+      title: '자차로 오시는 길 - 지하주차장',
+      lead: 'M(마트) 구역 주차 → B1층 롯데월드 정문 방향 → 로티로리 광장 → 공차 앞 엘리베이터 → 3층',
       steps: [
         {
-          text: '롯데마트 제타플렉스 지하 주차장으로 진입하세요.',
-          sub: '롯데월드 · 롯데백화점 · 롯데호텔 · 롯데마트가 모두 연결되어 있습니다.',
-          imgs: ['/wedding-invitation/directions/car-1.jpg'],
+          text: '롯데월드 단지 주차장 M(마트) 구역에 주차해주세요.',
+          sub: '이동이 편한 위치는 B1층 M143, B2층 M243, B3층 M343입니다. B2~B4층에 주차하셨다면 B1층으로 올라오신 후 아래 안내를 따라주세요.',
+          imgs: [
+            '/wedding-invitation/directions/park-b-1.jpg',
+            '/wedding-invitation/directions/park-b-2.jpg',
+          ],
         },
         {
-          text: '분홍색 주차영역을 지나, 바닥의 안내표시대로 천천히 이동하세요.',
-          imgs: ['/wedding-invitation/directions/car-2.jpg'],
+          text: 'B1층 롯데월드 어드벤처 정문 방향으로 이동해주세요.',
+          sub: 'B2 · B3 · B4층에 주차하신 경우 B1층으로 이동한 후 어드벤처(정문) 방향으로 가시면 됩니다.',
+          imgs: [
+            '/wedding-invitation/directions/park-b-3.jpg',
+            '/wedding-invitation/directions/park-b-4.jpg',
+            '/wedding-invitation/directions/park-b-5.jpg',
+            '/wedding-invitation/directions/park-b-6.jpg',
+          ],
         },
         {
-          text: '초록색 영역인 M주차구역에 주차하세요.',
-          imgs: ['/wedding-invitation/directions/car-3.jpg'],
+          text: '롯데월드 어드벤처 정문을 등지고 로티로리 광장 쪽으로 직진하세요.',
+          imgs: ['/wedding-invitation/directions/park-b-7.jpg'],
         },
         {
-          text: '롯데마트(제타플렉스) 입구로 입장하세요.',
-          imgs: ['/wedding-invitation/directions/car-4.jpg'],
+          text: '공차 앞 엘리베이터 탑승 후 3층에서 하차하세요.',
+          imgs: [
+            '/wedding-invitation/directions/park-b-8.jpg',
+            '/wedding-invitation/directions/park-b-9.jpg',
+          ],
         },
         {
-          text: '엘리베이터를 타고 3층으로 이동합니다.',
-          sub: '안내문에 표시된 3층의 데카트론 · 탑텐 매장 방향으로 이동하세요.',
-          imgs: ['/wedding-invitation/directions/car-5.jpg'],
-        },
-        {
-          text: '에스컬레이터를 가운데 두고, 데카트론과 탑텐 매장의 반대편 방향으로 쭉 들어오세요.',
-          imgs: ['/wedding-invitation/directions/car-6.jpg'],
-        },
-        {
-          text: '전통 한식당 저자거리 입구가 보이면 도착입니다.',
-          imgs: ['/wedding-invitation/directions/car-7.jpg'],
+          text: '민속박물관 · 저자거리 입구를 지나 우측 안쪽으로 쭉 들어가면 전통혼례장이 나옵니다.',
+          imgs: [
+            '/wedding-invitation/directions/park-b-10.jpg',
+            '/wedding-invitation/directions/park-b-11.jpg',
+            '/wedding-invitation/directions/park-b-12.jpg',
+            '/wedding-invitation/directions/park-b-13.jpg',
+          ],
         },
       ],
       notes: [
-        '지하주차장 A구역에 주차하셨다면, 롯데월드 매표소 뒤편 엘리베이터로 3층까지 오실 수 있습니다.',
-        '※ 롯데월드타워 주차장은 무료주차가 적용되지 않습니다.',
+        '롯데월드 단지 전체에 주차하실 수 있지만, 이 안내는 M(마트) 구역 기준으로 작성되었습니다.',
+        '※ 롯데월드타워 · 롯데월드몰 주차장은 이용하실 수 없습니다.',
+        '※ 예식일은 롯데마트 휴무일이라 마트 3층 연결통로로는 입장하실 수 없습니다. 위 안내는 휴무일 기준 경로입니다.',
+      ],
+    },
+    {
+      key: 'park-outdoor',
+      label: '옥외주차장',
+      title: '자차로 오시는 길 - 옥외지상주차장',
+      lead: '옥외주차장 → KFC · 메가커피 사이 진입 → B1층 → 로티로리 광장 → 공차 앞 엘리베이터 → 3층',
+      alert: {
+        title: '옥외주차장에는 엘리베이터가 없습니다',
+        body: '유모차나 휠체어를 이용하시는 분은 계단 이동이 어려울 수 있습니다. 그런 경우 지하주차장(M 구역)을 이용해 주세요.',
+      },
+      steps: [
+        {
+          text: '주차장에 주차 후 1층으로 내려온 뒤 어드벤처 방향(건너편)으로 이동하세요.',
+          imgs: ['/wedding-invitation/directions/park-o-1.jpg'],
+        },
+        {
+          text: '육교 옆 KFC와 메가커피 사이로 진입하세요.',
+          imgs: ['/wedding-invitation/directions/park-o-2.jpg'],
+        },
+        {
+          text: '어드벤처(정문) 방향으로 입장 후 직진하다가 에스컬레이터를 타고 B1층으로 내려가세요.',
+          imgs: ['/wedding-invitation/directions/park-o-3.jpg'],
+        },
+        {
+          text: '롯데월드 어드벤처 정문 방향으로 이동하세요.',
+          imgs: [
+            '/wedding-invitation/directions/park-o-4.jpg',
+            '/wedding-invitation/directions/park-o-5.jpg',
+            '/wedding-invitation/directions/park-o-6.jpg',
+          ],
+        },
+        {
+          text: '롯데월드 어드벤처 정문을 등지고 로티로리 광장 쪽으로 직진하세요.',
+          imgs: ['/wedding-invitation/directions/park-o-7.jpg'],
+        },
+        {
+          text: '공차 앞 엘리베이터 탑승 후 3층에서 하차하세요.',
+          imgs: [
+            '/wedding-invitation/directions/park-o-8.jpg',
+            '/wedding-invitation/directions/park-o-9.jpg',
+          ],
+        },
+        {
+          text: '민속박물관 · 저자거리 입구를 지나 우측 안쪽으로 쭉 들어가면 전통혼례장이 나옵니다.',
+          imgs: [
+            '/wedding-invitation/directions/park-o-10.jpg',
+            '/wedding-invitation/directions/park-o-11.jpg',
+            '/wedding-invitation/directions/park-o-12.jpg',
+            '/wedding-invitation/directions/park-o-13.jpg',
+          ],
+        },
+      ],
+      notes: [
+        '※ 롯데월드타워 · 롯데월드몰 주차장은 이용하실 수 없습니다.',
+        '※ 예식일은 롯데마트 휴무일이라 마트 3층 연결통로로는 입장하실 수 없습니다. 위 안내는 휴무일 기준 경로입니다.',
       ],
     },
   ],

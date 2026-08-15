@@ -185,12 +185,14 @@ export default function MapSection() {
         </div>
       </div>
 
-      <div className="directions">
-        <div className="dir-heading">상세 경로 안내</div>
-        {directions.map((route) => (
-          <DirectionRoute key={route.key} route={route} />
-        ))}
-      </div>
+      {directions.length > 0 && (
+        <div className="directions">
+          <div className="dir-heading">상세 경로 안내</div>
+          {directions.map((route) => (
+            <DirectionRoute key={route.key} route={route} />
+          ))}
+        </div>
+      )}
     </section>
   )
 }
