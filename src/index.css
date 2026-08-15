@@ -630,7 +630,7 @@ section + section .punch-right {
 }
 .dir-heading {
   font-family: 'Inter', sans-serif;
-  font-size: 11px;
+  font-size: 12.5px;
   letter-spacing: 0.25em;
   color: var(--accent);
   text-align: center;
@@ -661,7 +661,7 @@ section + section .punch-right {
 }
 .dir-toggle-title {
   font-family: 'Noto Serif KR', serif;
-  font-size: 16.5px;
+  font-size: 17.5px;
   letter-spacing: 0.04em;
 }
 .dir-toggle .arrow {
@@ -686,21 +686,21 @@ section + section .punch-right {
 }
 .dir-alert-title {
   font-family: 'Noto Serif KR', serif;
-  font-size: 14.5px;
+  font-size: 15.5px;
   letter-spacing: 0.03em;
   color: var(--accent);
   margin-bottom: 6px;
 }
 .dir-alert-body {
   margin: 0;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.72;
   color: var(--ink);
 }
 
 .dir-lead {
   margin: 0 0 14px;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   color: var(--ink-mute);
   padding-bottom: 12px;
@@ -729,7 +729,7 @@ section + section .punch-right {
   line-height: 1;
 }
 .dir-step-text {
-  font-size: 16.5px;
+  font-size: 17.5px;
   line-height: 1.65;
   color: var(--ink);
   padding-top: 3px;
@@ -755,7 +755,7 @@ section + section .punch-right {
 .dir-step-sub {
   display: block;
   margin-top: 3px;
-  font-size: 14.5px;
+  font-size: 15.5px;
   line-height: 1.6;
   color: var(--ink-mute);
 }
@@ -767,7 +767,7 @@ section + section .punch-right {
 }
 .dir-note {
   margin: 0;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   color: var(--ink-mute);
 }

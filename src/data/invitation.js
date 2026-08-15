@@ -192,7 +192,7 @@ export const invitation = {
   // - volume: 0 ~ 1. 놀라지 않도록 낮게 시작합니다.
   bgm: {
     src: '/wedding-invitation/audio/bgm.mp3',
-    volume: 0.25,
+    volume: 0.17,
   },
 
   // 종이 청첩장 컨셉
