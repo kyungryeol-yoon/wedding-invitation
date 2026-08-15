@@ -651,7 +651,15 @@ section + section .punch-right {
   gap: 10px;
   color: var(--ink);
 }
-.dir-toggle-text { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+/* 라벨이 길면 좁은 화면에서 제목이 문구 중간에 잘립니다.
+   그럴 때는 제목을 통째로 아랫줄로 내려 한 줄로 읽히게 합니다. */
+.dir-toggle-text {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  min-width: 0;
+}
 .dir-toggle-label {
   flex-shrink: 0;
   font-size: 11px;
