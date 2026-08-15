@@ -623,8 +623,9 @@ section + section .punch-right {
 .map-info-body .muted,
 .map-info-body.muted { color: var(--ink-mute); font-size: 14.5px; }
 
-/* 놓치면 곤란한 안내 — 길을 헤매거나 주차비를 물게 되는 것들.
-   회색 부가설명(.muted)과 구분되도록 단청 주칠색으로 띄웁니다. */
+/* 꼭 봐야 하는 두 가지에만 씁니다 — 상세 경로로 안내하는 문장과,
+   엉뚱한 주차장에 대면 주차비를 물게 된다는 경고.
+   많이 붙이면 강조가 흐려지므로 나머지는 회색(.muted)으로 둡니다. */
 .map-info-body .note,
 .map-info-body.note {
   display: inline-block;
