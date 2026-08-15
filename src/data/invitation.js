@@ -52,7 +52,7 @@ export const invitation = {
           imgs: ['/wedding-invitation/directions/exit4.jpg'],
         },
         {
-          text: '나온 방향 그대로, 롯데백화점을 지나 롯데월드 어드벤처 정문으로 입장합니다.',
+          text: '나온 방향 그대로, 롯데백화점을 지나 롯데월드 정문으로 입장합니다.',
           imgs: ['/wedding-invitation/directions/walk-2.jpg'],
         },
         {
@@ -118,7 +118,7 @@ export const invitation = {
       steps: [
         {
           text: '롯데마트 제타플렉스 지하 주차장으로 진입하세요.',
-          sub: '롯데월드 어드벤처 · 롯데백화점 · 롯데호텔 · 롯데마트가 모두 연결되어 있습니다.',
+          sub: '롯데월드 · 롯데백화점 · 롯데호텔 · 롯데마트가 모두 연결되어 있습니다.',
           imgs: ['/wedding-invitation/directions/car-1.jpg'],
         },
         {
