@@ -623,6 +623,17 @@ section + section .punch-right {
 .map-info-body .muted,
 .map-info-body.muted { color: var(--ink-mute); font-size: 14.5px; }
 
+/* 놓치면 곤란한 안내 — 길을 헤매거나 주차비를 물게 되는 것들.
+   회색 부가설명(.muted)과 구분되도록 단청 주칠색으로 띄웁니다. */
+.map-info-body .note,
+.map-info-body.note {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 14.5px;
+}
+.map-info-body .note b,
+.map-info-body.note b { color: var(--accent); }
+
 /* 상세 경로 안내 (접기/펼치기) */
 .directions {
   margin-top: 22px;
