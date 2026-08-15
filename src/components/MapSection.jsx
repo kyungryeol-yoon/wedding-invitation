@@ -173,7 +173,7 @@ export default function MapSection() {
               아래 상세 경로대로 오시면 됩니다.
             </span><br />
             <span className="note">
-              ※ <b>롯데월드타워 · 롯데월드몰</b> 주차장은 무료주차가 적용되지 않습니다.
+              ※ <b>롯데월드타워</b> 주차장은 무료주차가 적용되지 않습니다.
             </span>
           </div>
         </div>
