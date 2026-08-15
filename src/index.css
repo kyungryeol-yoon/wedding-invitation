@@ -660,7 +660,7 @@ section + section .punch-right {
 }
 .dir-toggle-title {
   font-family: 'Noto Serif KR', serif;
-  font-size: 15.5px;
+  font-size: 16.5px;
   letter-spacing: 0.04em;
 }
 .dir-toggle .arrow {
@@ -692,14 +692,14 @@ section + section .punch-right {
 }
 .dir-alert-body {
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.72;
   color: var(--ink);
 }
 
 .dir-lead {
   margin: 0 0 14px;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.7;
   color: var(--ink-mute);
   padding-bottom: 12px;
@@ -728,7 +728,7 @@ section + section .punch-right {
   line-height: 1;
 }
 .dir-step-text {
-  font-size: 15px;
+  font-size: 16.5px;
   line-height: 1.65;
   color: var(--ink);
   padding-top: 3px;
@@ -754,7 +754,7 @@ section + section .punch-right {
 .dir-step-sub {
   display: block;
   margin-top: 3px;
-  font-size: 13.5px;
+  font-size: 14.5px;
   line-height: 1.6;
   color: var(--ink-mute);
 }
@@ -766,7 +766,7 @@ section + section .punch-right {
 }
 .dir-note {
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.7;
   color: var(--ink-mute);
 }
@@ -972,6 +972,61 @@ section + section .punch-right {
   letter-spacing: 0.3em;
   font-family: 'Inter', sans-serif;
   text-transform: uppercase;
+}
+
+/* ====================================================
+   BGM — 배경음악 플로팅 버튼
+   ==================================================== */
+.bgm-btn {
+  position: fixed;
+  right: 16px;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: 20px;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 40;
+
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--line-soft);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--paper-soft) 62%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--ink-mute);
+
+  opacity: 0.55;
+  transition: opacity 0.2s, color 0.2s, background 0.2s;
+}
+.bgm-btn:hover { opacity: 0.9; }
+.bgm-btn:active { opacity: 1; }
+.bgm-btn.on {
+  opacity: 0.8;
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.bgm-btn svg { display: block; }
+
+/* 재생 중일 때만 아주 옅게 맥동시켜 소리가 나고 있음을 알립니다. */
+.bgm-btn.on::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  opacity: 0;
+  animation: bgmPulse 2.6s ease-out infinite;
+}
+@keyframes bgmPulse {
+  0%   { transform: scale(1);    opacity: 0.5; }
+  70%  { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bgm-btn.on::after { animation: none; }
 }
 
 /* ====================================================
