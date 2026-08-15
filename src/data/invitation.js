@@ -185,6 +185,16 @@ export const invitation = {
   heroImageFallback: '/wedding-invitation/gallery/hero.svg',
   heroTagline: 'You & Me, Always',
 
+  // 배경음악
+  // - src 를 null 로 두면 플로팅 버튼이 아예 표시되지 않습니다.
+  // - 브라우저 정책상 소리 있는 자동 재생이 막히므로,
+  //   하객의 첫 조작(탭 · 스크롤)에 맞춰 재생을 시작합니다.
+  // - volume: 0 ~ 1. 놀라지 않도록 낮게 시작합니다.
+  bgm: {
+    src: '/wedding-invitation/audio/bgm.mp3',
+    volume: 0.25,
+  },
+
   // 종이 청첩장 컨셉
   subBrand: 'LOTTE WORLD · TRADITIONAL WEDDING',
 
