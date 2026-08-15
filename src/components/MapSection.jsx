@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { invitation } from '../data/invitation'
 import NaverMap from './NaverMap'
 
@@ -25,8 +26,79 @@ function KakaoIcon() {
   )
 }
 
+function DirectionRoute({ route }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="dir-route">
+      <button
+        type="button"
+        className={`dir-toggle ${open ? 'open' : ''}`}
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+      >
+        <span className="dir-toggle-text">
+          <span className="dir-toggle-label">{route.label}</span>
+          <span className="dir-toggle-title">{route.title}</span>
+        </span>
+        <span className="arrow">▾</span>
+      </button>
+
+      {open && (
+        <div className="dir-body">
+          {route.alert && (
+            <div className="dir-alert" role="note">
+              <div className="dir-alert-title">{route.alert.title}</div>
+              <p className="dir-alert-body">{route.alert.body}</p>
+            </div>
+          )}
+          {route.lead && <p className="dir-lead">{route.lead}</p>}
+          <ol className="dir-steps">
+            {route.steps.map((step, i) => (
+              <li className="dir-step" key={i}>
+                <div className="dir-step-head">
+                  <span className="dir-step-num">{i + 1}</span>
+                  <span className="dir-step-text">
+                    {step.text}
+                    {step.sub && <span className="dir-step-sub">{step.sub}</span>}
+                  </span>
+                </div>
+                {step.imgs.length > 0 && (
+                  <div className={`dir-step-imgs count-${step.imgs.length}`}>
+                    {step.imgs.map((src) => (
+                      <img
+                        key={src}
+                        className="dir-step-img"
+                        src={src}
+                        alt={`${route.title} ${i + 1}단계 — ${step.text}`}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ))}
+                  </div>
+                )}
+              </li>
+            ))}
+          </ol>
+          {route.notes.length > 0 && (
+            <div className="dir-notes">
+              {route.notes.map((note) => (
+                <p
+                  key={note}
+                  className={`dir-note ${note.startsWith('※') ? 'warn' : ''}`}
+                >
+                  {note}
+                </p>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function MapSection() {
-  const { wedding } = invitation
+  const { wedding, directions } = invitation
   return (
     <section className="map">
       <span className="punch-right" />
@@ -76,17 +148,20 @@ export default function MapSection() {
         <div className="map-info-row">
           <div className="map-info-label">도보</div>
           <div className="map-info-body">
-            잠실역 4번 출구에서 지하로 연결되어 있습니다.<br />
-            <b>롯데마트 제타플렉스</b> 방향으로 직진 →
-            <b> 롯데월드 민속박물관</b> 방향으로 이동 →
-            엘리베이터로 <b>3층</b>까지 올라오시면 됩니다.
+            잠실역 4번 출구에서 <b>지상 · 지하</b> 두 경로 모두 연결됩니다.<br />
+            <span className="muted">아래 상세 경로를 참고해 주세요.</span>
           </div>
         </div>
         <div className="map-info-row">
           <div className="map-info-label">주차</div>
           <div className="map-info-body">
-            롯데월드 어드벤처 주차장 이용 가능 <br />
+            롯데월드 어드벤처 지하주차장 이용<br />
             <span className="muted">주차 2시간 무료 (주차확인: 피로연회장 '주막' 카운터)</span><br />
+            <span className="muted">
+              ※ 예식일은 <b>롯데마트 휴무일</b>이라 마트 통로가 막힙니다.
+              주차 후 지하 1층 <b>로티로리 광장</b>에서 민속박물관 엘리베이터를 이용해 주세요.
+            </span><br />
+            <span className="muted">※ 롯데월드타워 주차장은 무료주차가 적용되지 않습니다.</span>
           </div>
         </div>
         <div className="map-info-row">
@@ -96,6 +171,13 @@ export default function MapSection() {
             여유 있게 출발 부탁드립니다.
           </div>
         </div>
+      </div>
+
+      <div className="directions">
+        <div className="dir-heading">상세 경로 안내</div>
+        {directions.map((route) => (
+          <DirectionRoute key={route.key} route={route} />
+        ))}
       </div>
     </section>
   )
