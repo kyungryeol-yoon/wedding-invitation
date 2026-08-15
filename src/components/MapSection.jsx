@@ -62,14 +62,18 @@ function DirectionRoute({ route }) {
                     {step.sub && <span className="dir-step-sub">{step.sub}</span>}
                   </span>
                 </div>
-                {step.imgs.length > 0 && (
-                  <div className={`dir-step-imgs count-${step.imgs.length}`}>
-                    {step.imgs.map((src) => (
+                {step.imgs?.length > 0 && (
+                  <div className="dir-step-imgs">
+                    {step.imgs.map((src, n) => (
                       <img
                         key={src}
                         className="dir-step-img"
                         src={src}
-                        alt={`${route.title} ${i + 1}단계 — ${step.text}`}
+                        alt={
+                          step.imgs.length > 1
+                            ? `${i + 1}단계 ${n + 1}/${step.imgs.length} — ${step.text}`
+                            : `${i + 1}단계 — ${step.text}`
+                        }
                         loading="lazy"
                         decoding="async"
                       />
@@ -79,11 +83,11 @@ function DirectionRoute({ route }) {
               </li>
             ))}
           </ol>
-          {route.notes.length > 0 && (
+          {route.notes?.length > 0 && (
             <div className="dir-notes">
-              {route.notes.map((note) => (
+              {route.notes.map((note, n) => (
                 <p
-                  key={note}
+                  key={n}
                   className={`dir-note ${note.startsWith('※') ? 'warn' : ''}`}
                 >
                   {note}
@@ -148,7 +152,7 @@ export default function MapSection() {
         <div className="map-info-row">
           <div className="map-info-label">도보</div>
           <div className="map-info-body">
-            잠실역 4번 출구에서 <b>지상 · 지하</b> 두 경로 모두 연결되며,
+            잠실역 4번 출구에서 <b>실내 · 실외</b> 두 경로 모두 연결되며,
             엘리베이터로 3층 <b>롯데월드 민속박물관 전통혼례장</b>으로 오시면 됩니다.<br />
             <span className="note">
               길을 물으실 때는 &lsquo;3층&rsquo;보다 <b>&lsquo;롯데월드 민속박물관 전통혼례장&rsquo;</b>으로

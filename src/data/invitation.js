@@ -44,7 +44,7 @@ export const invitation = {
   //   alert : { title, body } — 펼치면 맨 위에 뜨는 경고 상자. 꼭 먼저 읽어야 할 때만.
   //   steps : [{ text, sub?, imgs: [] }]
   //           - sub  : 단계에 덧붙이는 보조 설명 (작은 글씨)
-  //           - imgs : 사진 경로 배열. 한 단계에 2장까지 나란히 표시.
+  //           - imgs : 사진 경로 배열. 걸어가는 순서대로 위에서 아래로 쌓입니다.
   //                    [] 로 두면 사진 없이 글만 나옵니다.
   //   notes : 경로 맨 아래 안내 문구들. '※' 로 시작하면 강조 표시.
   //
@@ -55,7 +55,7 @@ export const invitation = {
       key: 'transit-indoor',
       label: '실내',
       title: '대중교통으로 오시는 길 - 실내 이동',
-      lead: '잠실역 4번 출구 방향 직진 → BUTTER 매장 앞 좌회전 → 로티로리 조형물 → 기둥 뒷편 엘리베이터 → 3층',
+      lead: '잠실역 4번 출구 방향 직진 → BUTTER 매장 앞 좌회전 → 로티로리 조형물 → 기둥 뒤편 엘리베이터 → 3층',
       steps: [
         {
           text: '잠실역(2호선) 4번 출구 방향으로 직진하세요.',
@@ -77,7 +77,7 @@ export const invitation = {
           ],
         },
         {
-          text: '기둥 뒷편 엘리베이터 탑승 후 3층에서 하차하세요.',
+          text: '기둥 뒤편 엘리베이터 탑승 후 3층에서 하차하세요.',
           imgs: [
             '/wedding-invitation/directions/indoor-7.jpg',
             '/wedding-invitation/directions/indoor-8.jpg',
@@ -99,7 +99,7 @@ export const invitation = {
       key: 'transit-outdoor',
       label: '실외',
       title: '대중교통으로 오시는 길 - 실외 이동',
-      lead: '잠실역 4번 출구로 나가기 → 롯데월드 어드벤처 입구 → 나선형 계단 뒷편 엘리베이터 → 3층',
+      lead: '잠실역 4번 출구로 나가기 → 롯데월드 어드벤처 입구 → 나선형 계단 뒤편 엘리베이터 → 3층',
       steps: [
         {
           text: '잠실역(2호선) 4번 출구를 통해 밖으로 나갑니다.',
@@ -110,7 +110,7 @@ export const invitation = {
           imgs: ['/wedding-invitation/directions/outdoor-2.jpg'],
         },
         {
-          text: '입구로 들어와 나선형 계단 뒷편 엘리베이터 탑승 후 3층에서 하차하세요.',
+          text: '입구로 들어와 나선형 계단 뒤편 엘리베이터 탑승 후 3층에서 하차하세요.',
           sub: '롯데백화점과 하이마트 사이에 엘리베이터가 있습니다.',
           imgs: [
             '/wedding-invitation/directions/outdoor-3.jpg',
@@ -135,11 +135,11 @@ export const invitation = {
       key: 'park-basement',
       label: '지하주차장',
       title: '자차로 오시는 길 - 지하주차장',
-      lead: 'M(마트) 구역 주차 → B1층 롯데월드 정문 방향 → 로티로리 광장 → 공차 앞 엘리베이터 → 3층',
+      lead: 'M(마트) 구역 주차 → B1층 롯데월드 어드벤처 정문 방향 → 로티로리 광장 → 공차 앞 엘리베이터 → 3층',
       steps: [
         {
           text: '롯데월드 단지 주차장 M(마트) 구역에 주차해주세요.',
-          sub: '이동이 편한 위치는 B1층 M143, B2층 M243, B3층 M343입니다. B2~B4층에 주차하셨다면 B1층으로 올라오신 후 아래 안내를 따라주세요.',
+          sub: '이동이 편한 위치는 B1층 M143, B2층 M243, B3층 M343입니다.',
           imgs: [
             '/wedding-invitation/directions/park-b-1.jpg',
             '/wedding-invitation/directions/park-b-2.jpg',
@@ -189,7 +189,7 @@ export const invitation = {
       lead: '옥외주차장 → KFC · 메가커피 사이 진입 → B1층 → 로티로리 광장 → 공차 앞 엘리베이터 → 3층',
       alert: {
         title: '옥외주차장에는 엘리베이터가 없습니다',
-        body: '유모차나 휠체어를 이용하시는 분은 계단 이동이 어려울 수 있습니다. 그런 경우 지하주차장(M 구역)을 이용해 주세요.',
+        body: '유모차나 휠체어를 이용하시는 분은 계단 이동이 어려울 수 있습니다. 그런 경우 지하주차장 M(마트) 구역을 이용해 주세요.',
       },
       steps: [
         {
