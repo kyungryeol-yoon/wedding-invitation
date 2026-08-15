@@ -630,11 +630,12 @@ section + section .punch-right {
 }
 .dir-heading {
   font-family: 'Inter', sans-serif;
-  font-size: 12.5px;
-  letter-spacing: 0.25em;
+  font-size: 15px;
+  /* 크기를 키운 만큼 자간을 줄여야 가로로 과하게 벌어지지 않습니다. */
+  letter-spacing: 0.18em;
   color: var(--accent);
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 .dir-route + .dir-route { margin-top: 10px; }
 

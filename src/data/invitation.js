@@ -44,7 +44,7 @@ export const invitation = {
     {
       key: 'walk',
       label: '지상',
-      title: '롯데월드 정문으로 오시는 길',
+      title: '도보로 오시는 길',
       lead: '잠실역 4번 출구 → 롯데월드 정문 → 신데렐라 계단 뒤쪽 엘리베이터 → 3층',
       steps: [
         {
