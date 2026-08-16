@@ -621,6 +621,10 @@ section + section .punch-right {
   font-size: 15px;
   line-height: 1.75;
   color: var(--ink);
+  text-align: center;
+  /* 가운데 정렬은 줄 길이가 들쭉날쭉하면 지저분해 보입니다.
+     줄 나눔을 고르게 맞춰 덩어리로 읽히게 합니다. */
+  text-wrap: balance;
 }
 .map-group-lead b { font-weight: 700; }
 .map-group-lead .muted {
