@@ -101,8 +101,23 @@ function DirectionRoute({ route }) {
   )
 }
 
+/* 수단별 묶음 안에서 해당 그룹의 상세 경로만 펼쳐 보여줍니다.
+   경로가 하나도 없으면 토글 영역 자체가 나오지 않습니다. */
+function DirectionList({ routes }) {
+  if (routes.length === 0) return null
+  return (
+    <div className="directions">
+      {routes.map((route) => (
+        <DirectionRoute key={route.key} route={route} />
+      ))}
+    </div>
+  )
+}
+
 export default function MapSection() {
   const { wedding, directions } = invitation
+  const transitRoutes = directions.filter((r) => r.group === 'transit')
+  const carRoutes = directions.filter((r) => r.group === 'car')
   return (
     <section className="map">
       <span className="punch-right" />
@@ -134,73 +149,76 @@ export default function MapSection() {
         </a>
       </div>
 
-      <div className="map-info">
-        <div className="map-info-row">
-          <div className="map-info-label">지하철</div>
-          <div className="map-info-body">
-            2호선 · 8호선 <b>잠실역 4번 출구</b>
+      <div className="map-groups">
+        <div className="map-group">
+          <div className="map-group-title">대중교통으로 오시는 길</div>
+          <div className="map-info">
+            <div className="map-info-row">
+              <div className="map-info-label">지하철</div>
+              <div className="map-info-body">
+                2호선 · 8호선 <b>잠실역 4번 출구</b>
+              </div>
+            </div>
+            <div className="map-info-row">
+              <div className="map-info-label">버스</div>
+              <div className="map-info-body">
+                간선 <b>301 · 341</b> / 광역 <b>1007</b><br />
+                공항 <b>6705A · 6200 · N6703</b>(인천) <span className="muted">· 김포는 환승 필요</span><br />
+                <span className="muted">잠실역.롯데월드 정류장 하차</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="map-info-row">
-          <div className="map-info-label">버스</div>
-          <div className="map-info-body">
-            간선 <b>301 · 341</b> / 광역 <b>1007</b><br />
-            공항 <b>6705A · 6200 · N6703</b>(인천) <span className="muted">· 김포는 환승 필요</span><br />
-            <span className="muted">잠실역.롯데월드 정류장 하차</span>
-          </div>
-        </div>
-        <div className="map-info-row">
-          <div className="map-info-label">도보</div>
-          <div className="map-info-body">
-            잠실역 4번 출구에서 <b>실내 · 실외</b> 두 경로 모두 연결되며,
-            엘리베이터로 3층 <b>롯데월드 민속박물관 전통혼례장</b>으로 오시면 됩니다.<br />
+          <p className="map-group-lead">
+            4번 출구에서 <b>실내 · 실외</b> 두 경로 모두 이어지며,
+            엘리베이터로 3층 <b>롯데월드 민속박물관 전통혼례장</b>으로 오시면 됩니다.
             <span className="muted">
               길을 물으실 때는 &lsquo;3층&rsquo;보다 <b>&lsquo;롯데월드 민속박물관 전통혼례장&rsquo;</b>으로
               말씀해 주시면 안내받기 쉽습니다.
-            </span><br />
-            <span className="note">아래 상세 경로를 참고해 주세요.</span>
-          </div>
-        </div>
-        <div className="map-info-row">
-          <div className="map-info-label">주차</div>
-          <div className="map-info-body">
-            롯데월드 <b>지하주차장</b> · <b>옥외지상주차장</b> 이용 가능<br />
-            <span className="muted">
-              주차 2시간 무료 — 주차확인은 피로연회장 <b>&lsquo;주막&rsquo; 카운터</b>에서 하셔야 합니다.
-            </span><br />
-            <span className="muted">
-              ※ 예식일은 <b>롯데마트 휴무일</b>이라 마트 3층 연결통로가 막힙니다.
-              아래 상세 경로대로 오시면 됩니다.
-            </span><br />
-            <span className="note">
-              ※ <b>롯데월드타워</b> 주차장은 무료주차가 적용되지 않습니다.
             </span>
-          </div>
+          </p>
+          <DirectionList routes={transitRoutes} />
         </div>
-        <div className="map-info-row">
-          <div className="map-info-label">ATM</div>
-          <div className="map-info-body">
-            <b>신한은행</b> ATM 지하 1층<br />
-            <b>KB국민은행</b> ATM 1층
+
+        <div className="map-group">
+          <div className="map-group-title">자차로 오시는 길</div>
+          <div className="map-info">
+            <div className="map-info-row">
+              <div className="map-info-label">주차</div>
+              <div className="map-info-body">
+                롯데월드 <b>지하주차장</b> · <b>옥외지상주차장</b> 이용 가능<br />
+                <span className="muted">
+                  주차 2시간 무료 — 주차확인은 피로연회장 <b>&lsquo;주막&rsquo; 카운터</b>에서 하셔야 합니다.
+                </span><br />
+                <span className="muted">
+                  ※ 예식일은 <b>롯데마트 휴무일</b>이라 마트 3층 연결통로가 막힙니다.
+                  아래 상세 경로대로 오시면 됩니다.
+                </span><br />
+                <span className="note">
+                  ※ <b>롯데월드타워</b> 주차장은 무료주차가 적용되지 않습니다.
+                </span>
+              </div>
+            </div>
           </div>
+          <DirectionList routes={carRoutes} />
         </div>
-        <div className="map-info-row">
-          <div className="map-info-label">참고</div>
-          <div className="map-info-body muted">
-            혼례 시간대(오전~정오)는 주차장과 출입 동선이 혼잡할 수 있습니다.
-            여유 있게 출발 부탁드립니다.
+
+        <div className="map-info">
+          <div className="map-info-row">
+            <div className="map-info-label">ATM</div>
+            <div className="map-info-body">
+              <b>신한은행</b> ATM 지하 1층<br />
+              <b>KB국민은행</b> ATM 1층
+            </div>
+          </div>
+          <div className="map-info-row">
+            <div className="map-info-label">참고</div>
+            <div className="map-info-body muted">
+              혼례 시간대(오전~정오)는 주차장과 출입 동선이 혼잡할 수 있습니다.
+              여유 있게 출발 부탁드립니다.
+            </div>
           </div>
         </div>
       </div>
-
-      {directions.length > 0 && (
-        <div className="directions">
-          <div className="dir-heading">상세 경로 안내</div>
-          {directions.map((route) => (
-            <DirectionRoute key={route.key} route={route} />
-          ))}
-        </div>
-      )}
     </section>
   )
 }

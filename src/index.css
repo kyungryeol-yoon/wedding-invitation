@@ -590,8 +590,47 @@ section + section .punch-right {
 .brand-btn svg { display: block; flex-shrink: 0; }
 .brand-btn span { white-space: nowrap; }
 
+/* 오시는 길은 '대중교통 / 자차 / 그 외' 세 묶음으로 읽힙니다.
+   각 묶음은 [정보표] → [한 줄 요약] → [상세 경로 토글] 순서라,
+   상세 경로가 자기 수단 설명 바로 아래에 붙습니다. */
+.map-groups { margin-top: 22px; }
+.map-group + .map-group { margin-top: 30px; }
+/* 마지막 블록(ATM · 참고)은 제목이 없으므로, 자차 묶음에 딸린 것으로
+   읽히지 않도록 묶음 사이보다 조금 더 띄웁니다. */
+.map-group + .map-info { margin-top: 38px; }
+.map-group-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16.5px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.map-group-title::before,
+.map-group-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line-soft);
+}
+.map-group-lead {
+  margin: 12px 2px 0;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.map-group-lead b { font-weight: 700; }
+.map-group-lead .muted {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink-mute);
+  font-size: 14.5px;
+}
+
 .map-info {
-  margin-top: 22px;
   border: 1px solid var(--line-soft);
   background: var(--paper-soft);
   font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
@@ -637,17 +676,8 @@ section + section .punch-right {
 
 /* 상세 경로 안내 (접기/펼치기) */
 .directions {
-  margin-top: 22px;
+  margin-top: 12px;
   font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
-}
-.dir-heading {
-  font-family: 'Inter', sans-serif;
-  font-size: 15px;
-  /* 크기를 키운 만큼 자간을 줄여야 가로로 과하게 벌어지지 않습니다. */
-  letter-spacing: 0.18em;
-  color: var(--accent);
-  text-align: center;
-  margin-bottom: 14px;
 }
 .dir-route + .dir-route { margin-top: 10px; }
 
