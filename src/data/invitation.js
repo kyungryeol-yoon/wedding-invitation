@@ -51,6 +51,8 @@ export const invitation = {
   //                    [] 로 두면 사진 없이 글만 나옵니다.
   //   notes : 경로 맨 아래 안내 문구들. '※' 로 시작하면 강조 표시.
   //
+  // 경로를 펼치면 맨 위에 venueMap(아래 참고)이 함께 표시됩니다.
+  //
   // 사진은 public/directions/ 에 올리고
   // 경로는 /wedding-invitation/directions/... 로 적어주세요.
   directions: [
@@ -244,6 +246,30 @@ export const invitation = {
       ],
     },
   ],
+
+  // 경로를 펼치면 맨 위에 뜨는 층별 안내도.
+  // 경로마다 다른 길을 그리는 게 아니라, 마지막에 헤매지 않도록
+  // '혼례장이 대략 여기' 를 먼저 보여주는 용도라 네 경로 모두 이 그림 하나를 씁니다.
+  // null 로 두면 안내도가 표시되지 않습니다.
+  //
+  // 좌표는 모두 안내도 원본 크기(1160x640) 기준입니다.
+  //   viewBox : 'x y 폭 높이' — 안내도에서 잘라 보여줄 범위.
+  //             전체를 넣으면 휴대폰에서 글씨가 뭉개지므로 필요한 만큼만 자릅니다.
+  //   mark    : 빨간 동그라미 { x, y, rx, ry } 와 그 아래 붙는 label
+  //   caption : 안내도 아래 한 줄 설명
+  venueMap: {
+    src: '/wedding-invitation/directions/lotte-b1f.jpg',
+    viewBox: '360 10 660 300',
+    mark: {
+      x: 615,
+      y: 161,
+      rx: 30,
+      ry: 26,
+      label: { x: 615, y: 226, text: '전통혼례장 (3층)' },
+    },
+    caption: '혼례장은 롯데월드 3층 민속박물관 안에 있습니다. 안내도의 이 부근에서 3층으로 올라오시면 됩니다.',
+    alt: '롯데월드 지하 1층 안내도. 롯데마트 오른편 로티로리 광장 부근에 전통혼례장 위치가 빨간 동그라미로 표시되어 있습니다.',
+  },
 
   greeting: {
     eyebrow: 'OUR INVITATION',

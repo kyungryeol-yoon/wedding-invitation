@@ -733,6 +733,37 @@ section + section .punch-right {
   border-top: none;
   padding: 16px;
 }
+/* 층별 안내도 — 안내도 위에 빨간 동그라미를 SVG 로 덧그립니다.
+   굵기 · 글자 크기는 컴포넌트에서 viewBox 폭에 맞춰 계산해 넘겨줍니다. */
+.dir-map { margin: 0 0 14px; }
+.dir-map-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fff;
+  border: 1px solid var(--line-soft);
+}
+.dir-map-ring {
+  fill: none;
+  stroke: #e03127;
+}
+.dir-map-tag {
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+  font-weight: 700;
+  fill: #e03127;
+  /* 안내도 위에 바로 얹히므로, 흰 테두리를 둘러 글자가 묻히지 않게 합니다. */
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-linejoin: round;
+}
+.dir-map-caption {
+  margin-top: 8px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-mute);
+  text-align: center;
+}
+
 .dir-alert {
   margin-bottom: 14px;
   padding: 12px 14px;

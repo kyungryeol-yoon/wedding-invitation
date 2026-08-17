@@ -26,6 +26,44 @@ function KakaoIcon() {
   )
 }
 
+/* 경로를 펼치면 맨 위에 뜨는 층별 안내도.
+   경로마다 다른 길을 그리는 게 아니라, 끝까지 헤매지 않도록
+   '혼례장이 대략 여기' 를 먼저 보여주는 용도라 네 경로 모두 같은 그림입니다.
+   (좌표는 안내도 원본 1160x640 기준 — invitation.js 의 venueMap 참고) */
+function VenueMap({ map }) {
+  const { mark } = map
+  /* 굵기·글자 크기를 원본 좌표계 그대로 쓰면 잘라낸 범위에 따라 크기가 달라집니다.
+     잘라낸 폭에 비례해 키워, 화면에 보이는 크기가 일정하도록 맞춥니다. */
+  const u = Number(map.viewBox.split(/\s+/)[2]) / 375
+
+  return (
+    <figure className="dir-map">
+      <svg viewBox={map.viewBox} className="dir-map-svg" role="img" aria-label={map.alt}>
+        <image href={map.src} x="0" y="0" width="1160" height="640" />
+        <ellipse
+          className="dir-map-ring"
+          cx={mark.x}
+          cy={mark.y}
+          rx={mark.rx}
+          ry={mark.ry}
+          strokeWidth={4 * u}
+        />
+        <text
+          className="dir-map-tag"
+          x={mark.label.x}
+          y={mark.label.y}
+          textAnchor="middle"
+          fontSize={16.5 * u}
+          strokeWidth={4.5 * u}
+        >
+          {mark.label.text}
+        </text>
+      </svg>
+      <figcaption className="dir-map-caption">{map.caption}</figcaption>
+    </figure>
+  )
+}
+
 function DirectionRoute({ route }) {
   const [open, setOpen] = useState(false)
   return (
@@ -51,6 +89,7 @@ function DirectionRoute({ route }) {
               <p className="dir-alert-body">{route.alert.body}</p>
             </div>
           )}
+          {invitation.venueMap && <VenueMap map={invitation.venueMap} />}
           {route.lead && <p className="dir-lead">{route.lead}</p>}
           <ol className="dir-steps">
             {route.steps.map((step, i) => (
