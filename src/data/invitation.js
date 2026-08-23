@@ -261,6 +261,8 @@ export const invitation = {
   venueMap: {
     src: '/wedding-invitation/directions/lotte-b1f.jpg',
     mark: { x: 615, y: 161, text: '전통혼례장 (3층)' },
+    // 안내도를 눌러 크게 볼 때는 자르지 않고 전체를 보여줍니다.
+    fullAlt: '롯데월드 지하 1층 전체 안내도. 주차 구역과 층별 시설이 표시되어 있고, 롯데마트 오른편에 전통혼례장 위치가 빨간 동그라미로 표시되어 있습니다.',
     crops: {
       // 걸어오시는 분은 잠실역에서부터의 실내 지형지물이 기준입니다.
       transit: {

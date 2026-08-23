@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { invitation } from '../data/invitation'
 import NaverMap from './NaverMap'
+import Lightbox from './Lightbox'
 
 function NaverIcon() {
   return (
@@ -30,37 +31,78 @@ function KakaoIcon() {
    경로마다 다른 길을 그리는 게 아니라, 끝까지 헤매지 않도록
    '혼례장이 대략 여기' 를 먼저 보여주는 용도라 네 경로 모두 같은 그림입니다.
    (좌표는 안내도 원본 1160x640 기준 — invitation.js 의 venueMap 참고) */
-function VenueMap({ map, group }) {
+function VenueMapSvg({ map, viewBox, alt, className, scale = 1 }) {
   const { mark } = map
-  const crop = map.crops[group]
   /* 크기를 원본 좌표계 그대로 쓰면 넓게 자른 안내도에서는 표시가 깨알같이 작아집니다.
-     잘라낸 폭에 비례해 키워, 어느 안내도든 화면에 보이는 크기가 같도록 맞춥니다. */
-  const u = Number(crop.viewBox.split(/\s+/)[2]) / 375
+     잘라낸 폭에 비례해 키워, 어느 안내도든 화면에 보이는 크기가 같도록 맞춥니다.
+     scale 은 그 기준을 낮추는 값입니다. 확대해서 볼 때는 도면 글씨를 읽으려는
+     것이므로, 표시가 지도를 덮지 않도록 작게 줄여 씁니다. */
+  const u = (Number(viewBox.split(/\s+/)[2]) / 375) * scale
+
+  return (
+    <svg viewBox={viewBox} className={className} role="img" aria-label={alt}>
+      <image href={map.src} x="0" y="0" width="1160" height="640" />
+      <ellipse
+        className="dir-map-ring"
+        cx={mark.x}
+        cy={mark.y}
+        rx={17 * u}
+        ry={14.5 * u}
+        strokeWidth={4 * u}
+      />
+      <text
+        className="dir-map-tag"
+        x={mark.x}
+        y={mark.y + 37 * u}
+        textAnchor="middle"
+        fontSize={16.5 * u}
+        strokeWidth={4.5 * u}
+      >
+        {mark.text}
+      </text>
+    </svg>
+  )
+}
+
+function VenueMap({ map, group }) {
+  const [zoomed, setZoomed] = useState(false)
+  const crop = map.crops[group]
 
   return (
     <figure className="dir-map">
-      <svg viewBox={crop.viewBox} className="dir-map-svg" role="img" aria-label={crop.alt}>
-        <image href={map.src} x="0" y="0" width="1160" height="640" />
-        <ellipse
-          className="dir-map-ring"
-          cx={mark.x}
-          cy={mark.y}
-          rx={17 * u}
-          ry={14.5 * u}
-          strokeWidth={4 * u}
+      <button
+        type="button"
+        className="dir-map-btn"
+        onClick={() => setZoomed(true)}
+        aria-label={`${crop.alt} 눌러서 크게 보기`}
+      >
+        <VenueMapSvg
+          map={map}
+          viewBox={crop.viewBox}
+          alt={crop.alt}
+          className="dir-map-svg"
         />
-        <text
-          className="dir-map-tag"
-          x={mark.x}
-          y={mark.y + 37 * u}
-          textAnchor="middle"
-          fontSize={16.5 * u}
-          strokeWidth={4.5 * u}
-        >
-          {mark.text}
-        </text>
-      </svg>
+        <span className="dir-map-zoom" aria-hidden="true">＋ 크게 보기</span>
+      </button>
       <figcaption className="dir-map-caption">{crop.caption}</figcaption>
+
+      {zoomed && (
+        <Lightbox
+          label="안내도 크게 보기"
+          hint="손가락 두 개로 확대 · 두 번 탭해도 확대"
+          onClose={() => setZoomed(false)}
+          /* 확대해서 볼 때는 잘라내지 않고 안내도 전체를 보여줍니다. */
+          slides={[
+            <VenueMapSvg
+              key="venue"
+              map={map}
+              viewBox="0 0 1160 640"
+              alt={map.fullAlt}
+              scale={0.45}
+            />,
+          ]}
+        />
+      )}
     </figure>
   )
 }
